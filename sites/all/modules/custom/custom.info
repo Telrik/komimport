@@ -1,0 +1,9 @@
+
+name = Custom
+description = "Use the Cufon Javascript library to replace text with fancy fonts, rendered with with Canvas and VML."
+
+version = "7.x-dev"
+core = "7.x"
+project = "custom"
+datestamp = "1315329117"
+

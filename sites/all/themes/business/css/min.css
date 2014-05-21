@@ -1,0 +1,85 @@
+#block-search-form .form-text
+{
+	width: 334px;
+}
+.time_zakaz
+{
+	width: 139px;
+}
+.phone_one
+{
+	display: none;
+}
+#block-system-main-menu A.sf-depth-1
+{
+	padding: 0 10px;
+}
+#block-system-main-menu LI.last
+{
+	border-right: none;
+}
+#post-content
+{
+	width: 75%;
+}
+.bay_tools LABEL
+{
+	line-height: 26px;
+}
+.bay_tools .count
+{
+	margin-top: 10px;
+	padding-left: 2px;
+}
+.item_actions
+{
+	width: 200px;
+}
+.view-reviews.view-display-id-block .views-row
+{
+	float: none;
+	width: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.view-reviews.view-display-id-block .views-row-1
+{
+	margin-top: 0;
+}
+.subterms .item
+{
+	width: 32%;
+}
+.taxonomy-term .pruduct_list .product_frame
+{
+	width: 29%;
+}
+#block-block-7 .b_preimy
+{
+	width: 30%;
+}
+.tr_start
+{
+	clear: left;
+	border-top: 1px solid #D4D4D4;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.view-reviews.view-display-id-block .view-content
+{
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.view-id-reviews.view-display-id-block
+{
+	overflow: hidden;
+}
+.tr_start:first-child
+{
+	border-top: none;
+	padding-top: 0;
+}
+.fo_start
+{
+	clear: none;
+}
