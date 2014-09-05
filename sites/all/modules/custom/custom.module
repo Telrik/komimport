@@ -6,7 +6,7 @@ function custom_custom_theme()
     }
     if (arg(0) == 'node') {
         $node = node_load(arg(1));
-        if ($node->type == 'review') {
+        if (isset($node->type) && $node->type == 'review') {
             return 'empty';
         }
     }
@@ -377,11 +377,14 @@ function commerce_installments_create_product($product_type, $values, $extras)
  */
 function custom_block_info()
 {
+    $blocks['type_product'] = array(
+        'info' => t('Products types')
+    );
     $blocks['hit_product'] = array(
-        'info' => t('Product xit')
+        'info' => t('Products hits')
     );
     $blocks['spec_product'] = array(
-        'info' => t('Product spec')
+        'info' => t('Products special')
     );
     return $blocks;
 }
@@ -402,14 +405,29 @@ function custom_block_view($delta = '')
             $block['subject'] = t('Block Name');
             $block['content'] = custom_get_spec_product();
             break;
+        case 'type_product':
+            $block['subject'] = t('Block Name');
+            $block['content'] = custom_get_type_product();
+            break;
     }
 
     return $block;
 }
 
+function custom_get_type_product()
+{
+    $out = '';
+    $out .= theme('custom_producttype_template', array());
+    return $out;
+}
+
 function custom_theme()
 {
     $themes = array(
+        'custom_producttype_template' => array(
+            'template' => 'producttype',
+            'arguments' => array(),
+        ),
         // товар в списке
         'custom_productinlist_template' => array(
             'template' => 'productinlist',

@@ -23,54 +23,54 @@
  *
  * @ingroup views_templates
  */
- 
- 
- $arr_left = array('field_autor', 'created');
- $arr_right = array('field_rate');
-	
+
+
+$arr_left = array('field_autor', 'created');
+$arr_right = array('field_rate');
+
 ?>
 <div class="rev_top">
-	<div class="rev_left">
-		<?php foreach ($arr_left as $id): 
-			$field = $fields[$id];
-		?>
-		  <?php if (!empty($field->separator)): ?>
-			<?php print $field->separator; ?>
-		  <?php endif; ?>
+    <div class="rev_left">
+        <?php foreach ($arr_left as $id):
+            $field = $fields[$id];
+            ?>
+            <?php if (!empty($field->separator)): ?>
+            <?php print $field->separator; ?>
+        <?php endif; ?>
 
-		  <?php print $field->wrapper_prefix; ?>
-			<?php print $field->label_html; ?>
-			<?php print $field->content; ?>
-		  <?php print $field->wrapper_suffix; ?>
-		<?php endforeach; ?>
-	</div>
-	<div class="rev_right">
-		<?php foreach ($arr_right as $id): 
-			$field = $fields[$id];
-		?>
-		  <?php if (!empty($field->separator)): ?>
-			<?php print $field->separator; ?>
-		  <?php endif; ?>
+            <?php print $field->wrapper_prefix; ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print $field->wrapper_suffix; ?>
+        <?php endforeach; ?>
+    </div>
+    <div class="rev_right">
+        <?php foreach ($arr_right as $id):
+            $field = $fields[$id];
+            ?>
+            <?php if (!empty($field->separator)): ?>
+            <?php print $field->separator; ?>
+        <?php endif; ?>
 
-		  <?php print $field->wrapper_prefix; ?>
-			<?php print $field->label_html; ?>
-			<?php print $field->content; ?>
-		  <?php print $field->wrapper_suffix; ?>
-		<?php endforeach; ?>
-	</div>
+            <?php print $field->wrapper_prefix; ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print $field->wrapper_suffix; ?>
+        <?php endforeach; ?>
+    </div>
 </div>
 <div class="rev_bott">
-	<?php foreach ($fields as $id => $field): ?>
-		<? if(!in_array($id, $arr_right) && !in_array($id, $arr_left)){?>
-			<?php if (!empty($field->separator)): ?>
-				<?php print $field->separator; ?>
-			<?php endif; ?>
+    <?php foreach ($fields as $id => $field): ?>
+        <? if (!in_array($id, $arr_right) && !in_array($id, $arr_left)) { ?>
+            <?php if (!empty($field->separator)): ?>
+                <?php print $field->separator; ?>
+            <?php endif; ?>
 
-			<?php print $field->wrapper_prefix; ?>
-			<?php print $field->label_html; ?>
-			<?php print $field->content; ?>
-			<?php print $field->wrapper_suffix; ?>
-		<?}?>
-	<?php endforeach; ?>
+            <?php print $field->wrapper_prefix; ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print $field->wrapper_suffix; ?>
+        <? } ?>
+    <?php endforeach; ?>
 </div>
 

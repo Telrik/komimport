@@ -1,13 +1,12 @@
-#block-system-main-menu A.sf-depth-1
-{
-	padding: 0 3px 0 4px !important;
-	font-size: 13px;
+#block-system-main-menu A.sf-depth-1 {
+    padding: 0 3px 0 4px !important;
+    font-size: 13px;
 }
-.item_photo_text
-{
-	width: 74%;
+
+.item_photo_text {
+    width: 74%;
 }
-.item_actions
-{
-	width: 250px;
+
+.item_actions {
+    width: 250px;
 }

@@ -2,30 +2,16 @@ name = Business
 description = Business is a premium Drupal 7 theme. Developed by <a href="http://www.devsaran.com">Devsaran.com</a>.
 core = 7.x
 engine = phptemplate
-stylesheets[all][] = css/bootstrap.min.css
-stylesheets[all][] = css/bootstrap-theme.min.css
-
 stylesheets[all][] = css/style.css
 stylesheets[all][] = css/custom.css
-
-;stylesheets[all][] = css/jquery.multiselect.css
-;stylesheets[all][] = css/jquery.multiselect.filter.css
 stylesheets[all][] = css/jquery.fancybox.css
 stylesheets[all][] = css/ui.spinner.css
-
-
 stylesheets[only screen and (max-width:1259px)][] = css/sred.css
 stylesheets[only screen and (max-width:1199px)][] = css/min.css
 
 scripts[] = js/jquery.validate.js
 scripts[] = js/jquery.simpletip-1.3.1.js
-;scripts[] = js/jquery.multiselect.min.js
-;scripts[] = js/jquery.multiselect.ru.js
-;scripts[] = js/jquery.multiselect.filter.min.js
 scripts[] = js/ui.spinner.min.js
-
-scripts[] = js/bootstrap.min.js
-
 scripts[] = js/superfish.js
 scripts[] = js/supersubs.js
 scripts[] = js/jquery.fancybox.pack.js
@@ -34,21 +20,11 @@ scripts[] = js/sfmenu.js
 scripts[] = js/script.js
 
 regions[sidebar_first]  = First Sidebar
-regions[preheader]      = preheader
+regions[preheader]      = Preheader
 regions[header]         = Header center
 regions[headerright]    = Header right
-regions[homequotes]     = Home Quotes
-regions[home_high1]     = Home Highlight 1
-regions[home_high2]     = Home Highlight 2
-regions[home_high3]     = Home Highlight 3
-regions[secondarycontent]   = меню
+regions[secondarycontent]   = Меню
 regions[content]        = Content
-regions[content_top]    = Content Top
-regions[help]           = Help
-regions[footer_first]   = First Bottom
-regions[footer_second]  = Second Bottom
-regions[footer_third]   = Third Bottom
-regions[footer_fourth]  = Fourth Bottom
 regions[footer]         = Footer
 features[] = logo
 features[] = name

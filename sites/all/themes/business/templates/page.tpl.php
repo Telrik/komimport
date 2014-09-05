@@ -63,132 +63,138 @@
  * @see template_preprocess_page()
  * @see template_process()
  */
-if(arg(0) == 'node' && $node && $node->field_page_h1['und'][0]['value']){
-	$title = $node->field_page_h1['und'][0]['value'];
+if (arg(0) == 'node' && $node && $node->field_page_h1['und'][0]['value']) {
+    $title = $node->field_page_h1['und'][0]['value'];
 }
 ?>
 <script src="//api-maps.yandex.ru/2.0/?load=package.full&amp;lang=ru-RU" type="text/javascript"></script>
 <div id="wrap">
-		<?php if ($page['preheader']){ ?>
-			<div id="preheader">
-				<?php print render($page['preheader']); ?>
-			</div>
-		<?}?>
-	  <header id="header" class="clearfix" role="banner">
+    <?php if ($page['preheader']) { ?>
+        <div id="preheader">
+            <?php print render($page['preheader']); ?>
+        </div>
+    <? } ?>
+    <header id="header" class="clearfix" role="banner">
 
-		<div id='logo_sitename'>
-		  <?php if ($logo): ?>
-		   <div id="logo">
-			<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
-			</div>
-		  <?php endif; ?>
-		  <div id="sitename">
-			<h2><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h2>
-			<p><?php if ($site_slogan): ?><?php print $site_slogan; ?><?php endif; ?></p><!--site slogan-->
-		  </div>
-		</div>
-		
-			<?php print render($page['headerright']); ?>
-		<?php print render($page['header']); ?>
-	  </header>
-	  <?php print render($page['secondarycontent']); ?>
+        <div id='logo_sitename'>
+            <?php if ($logo): ?>
+                <div id="logo">
+                    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
+                </div>
+            <?php endif; ?>
+            <div id="sitename">
+                <h2><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h2>
 
-	  <div id="main">
-		
-		<div id="main_page_content">
-			<?
-			$sitebar_not_shown = 'sitebar_not_shown';
-			if (arg(0) != 'product' && $page['sidebar_first']){
-				$sitebar_not_shown = '';
-			}
-			?>
-			<section id="post-content" role="main" class='<?=$sitebar_not_shown?>'>
-				<?php if (theme_get_setting('breadcrumbs')): ?><div id="breadcrumbs"><?php if ($breadcrumb): print $breadcrumb; endif;?></div><?php endif; ?>
-				<?php print $messages; ?>
-				<?php if ($page['content_top']): ?><div id="content_top"><?php print render($page['content_top']); ?></div><?php endif; ?>
-				<?php print render($title_prefix); ?>
-				<?php if ($title && !drupal_is_front_page()): ?><h1 class="page-title"><?php print $title; ?></h1><?php endif; ?>
-				<?php print render($title_suffix); ?>
-				<?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
-				<?php print render($page['help']); ?>
-				<?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-				<?php print render($page['content']); ?>
-				<?
-				 if(arg(0) == 'node'){
-					$var = views_embed_view('reviews', 'block', arg(1));
-					echo $var;
-				 }?>
-				 <?
-				 if(arg(0) == 'node' && $node->type == 'services'){
-					$block = block_load('block', '10');
-					$render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
-					$output = render($render_array);
-					print $output;
-				}
-				 ?>
-			</section> <!-- /#main -->
-		  
-			<?php 
-			if (arg(0) != 'product' && $page['sidebar_first']): 
-			
-			?>
-				<aside id="sidebar" role="complementary" class="sidebar clearfix">
-				  <?php print render($page['sidebar_first']); ?>
-					
-				  <?
-					if(!drupal_is_front_page() && !(isset($node) && $node->nid == 28)){
-						$var = views_embed_view('reviews', 'block_1');
-						echo $var;
-					}
-				 ?>
-				</aside>  <!-- /#sidebar-first -->
-			<?php endif; ?>
-		</div>
-		<?if(arg(0) == 'node' && $node && $node->field_seo_text['und'][0]['value']){?>
-		<div class="text_line">
-			<div class="line_content">
-				<?=$node->field_seo_text['und'][0]['value']?>
-			</div>
-		</div>
-		<?}?>
-	  
-	  <?php if ($page['footer_first'] || $page['footer_second'] || $page['footer_third'] || $page['footer_fourth']): ?>
-		<div id="footer-saran" class="clearfix">
-		 <div id="footer-wrap">
-		  <?php if ($page['footer_first']): ?>
-		  <div class="footer-box"><?php print render($page['footer_first']); ?></div>
-		  <?php endif; ?>
-		  <?php if ($page['footer_second']): ?>
-		  <div class="footer-box"><?php print render($page['footer_second']); ?></div>
-		  <?php endif; ?>
-		  <?php if ($page['footer_third']): ?>
-		  <div class="footer-box"><?php print render($page['footer_third']); ?></div>
-		  <?php endif; ?>
-		  <?php if ($page['footer_fourth']): ?>
-		  <div class="footer-box remove-margin"><?php print render($page['footer_fourth']); ?></div>
-		  <?php endif; ?>
-		 </div>
-		</div>
-		<div class="clear"></div>
-	  <?php endif; ?>
-	  
-	  <!--END footer -->
-	  <?if($page['footer']){?>
-		<div id="footer-wrapper">
-			<?php print render($page['footer']) ?>
-		</div>
-	  <?}?>
+                <p><?php if ($site_slogan): ?><?php print $site_slogan; ?><?php endif; ?></p><!--site slogan-->
+            </div>
+        </div>
 
-	  <?php if (theme_get_setting('footer_copyright') || theme_get_setting('footer_credits')): ?>
-	  <div class="clear"></div>
-	  <div id="copyright">
-		<?php if (theme_get_setting('footer_copyright')): ?>
-		  <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <?php print $site_name; ?>.
-		<?php endif; ?>
-		<?php if (theme_get_setting('footer_credits')): ?>
-		  <span class="credits"><?php print t('Designed by'); ?>  <a href="http://www.devsaran.com">Devsaran</a>.</span>
-		<?php endif; ?>
-	  </div>
-	  <?php endif; ?>
-	</div>
+        <?php print render($page['headerright']); ?>
+        <?php print render($page['header']); ?>
+    </header>
+    <?php print render($page['secondarycontent']); ?>
+
+    <div id="main">
+
+        <div id="main_page_content">
+            <?
+            $sitebar_not_shown = 'sitebar_not_shown';
+            if (arg(0) != 'product' && $page['sidebar_first']) {
+                $sitebar_not_shown = '';
+            }
+            ?>
+            <section id="post-content" role="main" class='<?= $sitebar_not_shown ?>'>
+                <?php if (theme_get_setting('breadcrumbs')): ?>
+                    <div id="breadcrumbs"><?php if ($breadcrumb): print $breadcrumb; endif; ?></div><?php endif; ?>
+                <?php print $messages; ?>
+                <?php if ($page['content_top']): ?>
+                    <div id="content_top"><?php print render($page['content_top']); ?></div><?php endif; ?>
+                <?php print render($title_prefix); ?>
+                <?php if ($title && !drupal_is_front_page()): ?><h1 class="page-title"><?php print $title; ?></h1><?php endif; ?>
+                <?php print render($title_suffix); ?>
+                <?php if (!empty($tabs['#primary'])): ?>
+                    <div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
+                <?php print render($page['help']); ?>
+                <?php if ($action_links): ?>
+                    <ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+                <?php print render($page['content']); ?>
+                <?
+                if (arg(0) == 'node') {
+                    $var = views_embed_view('reviews', 'block', arg(1));
+                    echo $var;
+                }?>
+                <?
+                if (arg(0) == 'node' && $node->type == 'services') {
+                    $block = block_load('block', '10');
+                    $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
+                    $output = render($render_array);
+                    print $output;
+                }
+                ?>
+            </section>
+            <!-- /#main -->
+
+            <?php
+            if (arg(0) != 'product' && $page['sidebar_first']):
+
+                ?>
+                <aside id="sidebar" role="complementary" class="sidebar clearfix">
+                    <?php print render($page['sidebar_first']); ?>
+
+                    <?
+                    if (!drupal_is_front_page() && !(isset($node) && $node->nid == 28)) {
+                        $var = views_embed_view('reviews', 'block_1');
+                        echo $var;
+                    }
+                    ?>
+                </aside>  <!-- /#sidebar-first -->
+            <?php endif; ?>
+        </div>
+        <? if (arg(0) == 'node' && $node && $node->field_seo_text['und'][0]['value']) { ?>
+            <div class="text_line">
+                <div class="line_content">
+                    <?= $node->field_seo_text['und'][0]['value'] ?>
+                </div>
+            </div>
+        <? } ?>
+
+        <?php if ($page['footer_first'] || $page['footer_second'] || $page['footer_third'] || $page['footer_fourth']): ?>
+            <div id="footer-saran" class="clearfix">
+                <div id="footer-wrap">
+                    <?php if ($page['footer_first']): ?>
+                        <div class="footer-box"><?php print render($page['footer_first']); ?></div>
+                    <?php endif; ?>
+                    <?php if ($page['footer_second']): ?>
+                        <div class="footer-box"><?php print render($page['footer_second']); ?></div>
+                    <?php endif; ?>
+                    <?php if ($page['footer_third']): ?>
+                        <div class="footer-box"><?php print render($page['footer_third']); ?></div>
+                    <?php endif; ?>
+                    <?php if ($page['footer_fourth']): ?>
+                        <div class="footer-box remove-margin"><?php print render($page['footer_fourth']); ?></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="clear"></div>
+        <?php endif; ?>
+
+        <!--END footer -->
+        <? if ($page['footer']) { ?>
+            <div id="footer-wrapper">
+                <?php print render($page['footer']) ?>
+            </div>
+        <? } ?>
+
+        <?php if (theme_get_setting('footer_copyright') || theme_get_setting('footer_credits')): ?>
+            <div class="clear"></div>
+            <div id="copyright">
+                <?php if (theme_get_setting('footer_copyright')): ?>
+                    <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <?php print $site_name; ?>.
+                <?php endif; ?>
+                <?php if (theme_get_setting('footer_credits')): ?>
+                    <span class="credits"><?php print t('Designed by'); ?>  <a href="http://www.devsaran.com">Devsaran</a>.</span>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
 </div>

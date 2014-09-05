@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="29268716-e733-45a7-9169-46670b38977c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/komimport.local.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap.info" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap.make.example" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\bootstrap_subtheme.info.starterkit" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\css\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\css\style.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\bootstrap.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\content.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\footer.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\header.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\overrides.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\style.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\less\variables.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\screenshot.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\template.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\bootstrap_subtheme\templates\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\css\overrides.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\bootstrap.admin.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\misc\_progress.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\misc\_vertical-tabs.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\misc\ajax.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\misc\autocomplete.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\modules\comment\_comment-node-form.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\modules\ctools\js\modal.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\js\modules\views\js\ajax_view.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\screenshot.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\template.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme-settings.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\alter.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\block\block-admin-display-form.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\block\block.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\block\block.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-accordion.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-btn-dropdown.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-links.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-modal.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-modal.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-panel.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-panel.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\bootstrap\bootstrap-search-form-wrapper.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\common.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\file\file-managed-file.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\file\file-widget.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\icon\icon.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\icons.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\menu\menu-link.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\menu\menu-local-action.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\menu\menu-local-task.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\menu\menu-local-tasks.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\menu\menu-tree.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\pre-render.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\process.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\registry.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\search\search-block-form.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\settings.inc" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\breadcrumb.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\breadcrumb.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\button.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\button.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\container.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\date.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\exposed-filters.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\fieldset.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\form-element-label.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\form-element.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\html-tag.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\html.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\html.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\item-list.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\links.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\page.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\page.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\pager.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\progress-bar.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\region.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\status-messages.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\table.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\system\textfield.func.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\bootstrap\theme\views\views-view-table.vars.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\README.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\css\bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\fonts\glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\fonts\glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\fonts\glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\js\bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\business\templates\views-view-fields.tpl - копия.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\empty.info" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\block.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\commerce-line-item-summary.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\html.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\node.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\page.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\region.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\views-view--commerce-cart-block--default.tpl.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\OpenServer\domains\komimport.local\sites\all\themes\empty\templates\views-view-field--field-image-href.tpl.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/block.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/block.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/business.info" afterPath="$PROJECT_DIR$/sites/all/themes/business/business.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/comment-wrapper.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/comment-wrapper.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/comment.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/comment.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/commerce-line-item-summary.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/commerce-line-item-summary.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/custom/custom.module" afterPath="$PROJECT_DIR$/sites/all/modules/custom/custom.module" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/custom/filter.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/custom/filter.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/html.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/html.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/html5.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/html5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery-ui-1.9.2.custom.min.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery-ui-1.9.2.custom.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.carouFredSel.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.carouFredSel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-buttons.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-buttons.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-buttons.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-buttons.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-media.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-media.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-thumbs.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-thumbs.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-thumbs.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/helpers/jquery.fancybox-thumbs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.fancybox.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.fancybox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.fancybox.pack.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.fancybox.pack.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.multiselect.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.multiselect.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.multiselect.filter.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/jquery.multiselect.filter.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.filter.min.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.filter.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.filter.ru.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.filter.ru.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.min.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.ru.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.multiselect.ru.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.simpletip-1.3.1.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.simpletip-1.3.1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.validate.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/jquery.validate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/maintenance-page.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/maintenance-page.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/min.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/node.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/node.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/page.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/page.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/region.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/region.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/script.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/sfmenu.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/sfmenu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/sliding_effect.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/sliding_effect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/sred.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/sred.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/style.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/superfish.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/superfish.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/supersubs.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/supersubs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/taxonomy-term.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/taxonomy-term.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/template.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/theme-settings.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/theme-settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/css/ui.spinner.css" afterPath="$PROJECT_DIR$/sites/all/themes/business/css/ui.spinner.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/js/ui.spinner.min.js" afterPath="$PROJECT_DIR$/sites/all/themes/business/js/ui.spinner.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-exposed-form--arts.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-exposed-form--arts.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--arts--page.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--arts--page.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--commerce-cart-block--default.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--commerce-cart-block--default.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--reviews.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view--reviews.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-field--field-image-href.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-field--field-image-href.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--reviews--block-2.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--reviews--block-2.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--reviews--block.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--reviews--block.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--services--page.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields--services--page.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-fields.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-unformatted.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view-unformatted.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/business/templates/views-view.tpl.php" />
+    </list>
+    <ignored path="komimport.local.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="komimport.local" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sites/all/themes/business/template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="0" selection-start="610" selection-end="610" vertical-scroll-proportion="-17.0" vertical-offset="17" max-vertical-offset="3978">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="custom.module" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/custom.module">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="435" column="26" selection-start="13637" selection-end="13637" vertical-scroll-proportion="-12.54902" vertical-offset="6755" max-vertical-offset="15130">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="producttype.tpl.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/producttype.tpl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="112" selection-start="2741" selection-end="2741" vertical-scroll-proportion="0.34496754" vertical-offset="561" max-vertical-offset="1802">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sites/all/themes/business/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="28" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="58956">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/sites/all/themes/business/templates/user-login-block.tpl.php" />
+        <option value="$PROJECT_DIR$/sites/all/themes/business/template.php" />
+        <option value="$PROJECT_DIR$/sites/all/themes/business/business.info" />
+        <option value="$PROJECT_DIR$/sites/all/modules/custom/custom.module" />
+        <option value="$PROJECT_DIR$/sites/all/themes/business/css/style.css" />
+        <option value="$PROJECT_DIR$/sites/all/modules/custom/producttype.tpl.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="2576" />
+    <option name="height" value="1416" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="business" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="komimport.local" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="custom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="editor" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29268716-e733-45a7-9169-46670b38977c" name="Default" comment="" />
+      <created>1409916666497</created>
+      <updated>1409916666497</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18984374" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/business/business.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="967" selection-end="967" vertical-scroll-proportion="0.36486486" vertical-offset="0" max-vertical-offset="1258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/business/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="610" selection-end="610" vertical-scroll-proportion="-17.0" vertical-offset="17" max-vertical-offset="3978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/custom.module">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="435" column="26" selection-start="13637" selection-end="13637" vertical-scroll-proportion="-12.54902" vertical-offset="6755" max-vertical-offset="15130">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/business/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="28" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="58956">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/producttype.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="112" selection-start="2741" selection-end="2741" vertical-scroll-proportion="0.34496754" vertical-offset="561" max-vertical-offset="1802">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

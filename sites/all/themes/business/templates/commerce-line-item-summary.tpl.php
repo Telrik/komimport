@@ -20,24 +20,24 @@
  * @see template_preprocess()
  * @see template_process()
  */
- if($id == 1){
-?>
-<div class="line-item-summary">
-  <?php if ($quantity_raw): ?>
-  <div class="line-item-quantity">
-    <span class="line-item-quantity-label"><?php print l($quantity_label, 'cart'); ?></span> <span class="line-item-quantity-raw"><?php print $quantity_raw; ?></span> 
-	<span class="na">на</span> <span class="line-item-total-raw"><?=commerce_currency_format(str_replace(',', '', $total_raw), 'RUB');?></span>
-  </div>
-  <?php endif; ?>
-  <?php print $links; ?>
-</div>
-<?}else if($id == 2){?>
-<div class="line-item-summary">
-  <?php if ($total): ?>
-  <div class="line-item-total">
-	<span class="line-item-total-label"><?php print $total_label; ?></span> <span class="line-item-total-raw"><?php print $total; ?></span>
-  </div>
-  <?php endif; ?>
-  <?php print $links; ?>
-</div>
-<?}?>
+if ($id == 1) {
+    ?>
+    <div class="line-item-summary">
+        <?php if ($quantity_raw): ?>
+            <div class="line-item-quantity">
+                <span class="line-item-quantity-label"><?php print l($quantity_label, 'cart'); ?></span> <span class="line-item-quantity-raw"><?php print $quantity_raw; ?></span>
+                <span class="na">на</span> <span class="line-item-total-raw"><?= commerce_currency_format(str_replace(',', '', $total_raw), 'RUB'); ?></span>
+            </div>
+        <?php endif; ?>
+        <?php print $links; ?>
+    </div>
+<? } else if ($id == 2) { ?>
+    <div class="line-item-summary">
+        <?php if ($total): ?>
+            <div class="line-item-total">
+                <span class="line-item-total-label"><?php print $total_label; ?></span> <span class="line-item-total-raw"><?php print $total; ?></span>
+            </div>
+        <?php endif; ?>
+        <?php print $links; ?>
+    </div>
+<? } ?>

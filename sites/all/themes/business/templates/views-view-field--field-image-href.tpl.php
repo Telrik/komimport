@@ -21,10 +21,10 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
-if(count($row->field_field_image_href)){
-	$data = json_decode($row->field_field_image_href[0]['raw']['value']);
-	?>
-	<div class="image_fr">
-		<img src="<?=custom_get_file_url($data->F_directory, $data->F_file, 'prew_small')?>" alt="<?=$data->F_caption?>">
-	</div>
-<?}?>
+if (count($row->field_field_image_href)) {
+    $data = json_decode($row->field_field_image_href[0]['raw']['value']);
+    ?>
+    <div class="image_fr">
+        <img src="<?= custom_get_file_url($data->F_directory, $data->F_file, 'prew_small') ?>" alt="<?= $data->F_caption ?>">
+    </div>
+<? } ?>

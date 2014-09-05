@@ -23,39 +23,39 @@
  *
  * @ingroup views_templates
  */
- foreach ($fields as $id => $field){
-	$arr[] = $id;
- }
- //kpr($arr);
- 
- $arr = array('field_image', 'field_action_button');
- //$arr_left = array('field_autor', 'created');
+foreach ($fields as $id => $field) {
+    $arr[] = $id;
+}
+//kpr($arr);
+
+$arr = array('field_image', 'field_action_button');
+//$arr_left = array('field_autor', 'created');
 ?>
 <div class="r_frame">
-	<div class="image_f">
-		<?php $field = $fields['field_image']; ?>
-		<?php print $field->content; ?>
-	</div>
-	<div class="el_fields">
-		<?php foreach ($fields as $id => $field): ?>
-			<? if(!in_array($id, $arr)){?>
-				<?php if (!empty($field->separator)): ?>
-					<?php print $field->separator; ?>
-				<?php endif; ?>
+    <div class="image_f">
+        <?php $field = $fields['field_image']; ?>
+        <?php print $field->content; ?>
+    </div>
+    <div class="el_fields">
+        <?php foreach ($fields as $id => $field): ?>
+            <? if (!in_array($id, $arr)) { ?>
+                <?php if (!empty($field->separator)): ?>
+                    <?php print $field->separator; ?>
+                <?php endif; ?>
 
-				<?php print $field->wrapper_prefix; ?>
-				<?php print $field->label_html; ?>
-				<?php print $field->content; ?>
-				<?if($id == 'body'){?>
-					<a href="<?=drupal_get_path_alias('node/'.$row->nid);?>" class="more">Подробнее>></a>
-				<?}?>
-				<?php print $field->wrapper_suffix; ?>
-			<?}?>
-		<?php endforeach; ?>
-		
-	</div>
-	<div class="action_ser">
-		
-		<a href="#" class="<?=$row->field_field_action_button[0]['raw']['value']?>_serv"><span><?=$row->field_field_action_button[0]['rendered']['#markup']?></span></a>
-	</div>
+                <?php print $field->wrapper_prefix; ?>
+                <?php print $field->label_html; ?>
+                <?php print $field->content; ?>
+                <? if ($id == 'body') { ?>
+                    <a href="<?= drupal_get_path_alias('node/' . $row->nid); ?>" class="more">Подробнее>></a>
+                <? } ?>
+                <?php print $field->wrapper_suffix; ?>
+            <? } ?>
+        <?php endforeach; ?>
+
+    </div>
+    <div class="action_ser">
+
+        <a href="#" class="<?= $row->field_field_action_button[0]['raw']['value'] ?>_serv"><span><?= $row->field_field_action_button[0]['rendered']['#markup'] ?></span></a>
+    </div>
 </div>

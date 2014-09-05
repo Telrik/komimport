@@ -14,44 +14,48 @@
 <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
 
 <head>
-  <?php print $head; ?>
-  <title><?php print $head_title; ?></title>
-  <?php print $styles; ?>
-  <?php print $scripts; ?>
-  <!--[if lt IE 9]><script src="<?php print base_path() . drupal_get_path('theme', 'business') . '/js/html5.js'; ?>"></script><![endif]-->
+    <?php print $head; ?>
+    <title><?php print $head_title; ?></title>
+    <?php print $styles; ?>
+    <?php print $scripts; ?>
+    <!--[if lt IE 9]>
+    <script src="<?php print base_path() . drupal_get_path('theme', 'business') . '/js/html5.js'; ?>"></script><![endif]-->
 </head>
 
-<body class="<?php print $classes; ?>" <?php print $attributes;?>>
+<body class="<?php print $classes; ?>" <?php print $attributes; ?>>
 
 <div id="wrap" class="clearfix">
 
-  <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
-  </div>
+    <div id="skip-link">
+        <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    </div>
 
-   <header id="header" class="clearfix" role="banner">
+    <header id="header" class="clearfix" role="banner">
 
-    <hgroup>
-      <?php if ($logo): ?>
-       <div id="logo">
-        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
-        </div>
-      <?php endif; ?>
-      <div id="sitename">
-        <h2><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h2>
-        <p><?php if ($site_slogan): ?><?php print $site_slogan; ?><?php endif; ?></p><!--site slogan-->
-      </div>
-    </hgroup>
-  </header>
+        <hgroup>
+            <?php if ($logo): ?>
+                <div id="logo">
+                    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
+                </div>
+            <?php endif; ?>
+            <div id="sitename">
+                <h2><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></h2>
 
-  <section id="main" role="main" class="clearfix">
-    <?php print $messages; ?>
-    <a id="main-content"></a>
-    <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-    <?php print $content; ?>
-  </section> <!-- /#main -->
-  
-</div> <!-- /#wrapper -->
+                <p><?php if ($site_slogan): ?><?php print $site_slogan; ?><?php endif; ?></p><!--site slogan-->
+            </div>
+        </hgroup>
+    </header>
+
+    <section id="main" role="main" class="clearfix">
+        <?php print $messages; ?>
+        <a id="main-content"></a>
+        <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+        <?php print $content; ?>
+    </section>
+    <!-- /#main -->
+
+</div>
+<!-- /#wrapper -->
 
 </body>
 </html>

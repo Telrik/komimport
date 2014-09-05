@@ -42,94 +42,96 @@
  */
 ?>
 <div id="taxonomy-term-<?php print $term->tid; ?>" class="<?php print $classes; ?>">
-  <?php if (!$page): ?>
-    <h2><a href="<?php print $term_url; ?>"><?php print $term_name; ?></a></h2>
-  <?php endif; ?>
+    <?php if (!$page): ?>
+        <h2><a href="<?php print $term_url; ?>"><?php print $term_name; ?></a></h2>
+    <?php endif; ?>
 
-  <div class="content">
-	<?
-	kpr($term);
-	if($term->vid == 1){
-		
-		$childs = taxonomy_get_tree($vid, $term->tid, null, true);?>
-		<div class="subterms">
-			<?
-			$i = 0;
-			while($i < count($childs)){
-				$in_line = 0;
-				//<div class="line">
-				?>
-				
-					<?while($i < count($childs) && $in_line < 4){
-						$t = $childs[$i];?>
-						<div class="item">
-							<div class="img_frame">
-								<?if($t->field_ext_image['und'][0]){?>
-									<a href="/<?=drupal_get_path_alias('taxonomy/term/'.$t->tid)?>">
-										<img src="<?=custom_get_file_url($t->field_ext_image['und'][0]['url'])?>" 
-											alt="<?=custom_get_file_url($t->field_ext_image['und'][0]['title'])?>">
-									</a>
-								<?}?>
-							</div>
-							<a class='link_dop' href="/<?=drupal_get_path_alias('taxonomy/term/'.$t->tid)?>"><?=$t->name?></a>
-						</div>
-					<?++$i;++$in_line;}?>
-				
-			<?
-				//</div>
-			}?>
-		</div>
-	<?}?>
-	<?if($term->vid == 1 || $term->vid == 3){?>
-		<?
-		
-			$param = array();
-			if($term->vid == 1){
-				if($term->field_xid['und'][0]['value']){
-					if($term->field_xid['und'][0]['value'] < 100000){
-						$param['group'] = $term->field_xid['und'][0]['value'];
-					}else{
-						$param['type_e'] = $term->field_xid['und'][0]['value']-100000;
-					}
-				}
-			}else if($term->vid == 3){
-				if($term->field_xid['und'][0]['value']){
-					$param['mark'] = $term->field_xid['und'][0]['value'];
-				}
-			}
-			$rez = custom_get_reguest_GET_filter('getoffersequipment', $param);
-			if($term->vid == 1 && $param['type_e']){
-				$filter = custom_pagin_filter_GET();
-				print $filter;
-			}
-			$pagin = custom_pagin_sort_GET($rez);
-			$block = block_load('block', '8');
-			$render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
-			$output = render($render_array);
-			print $output;
-			print($pagin);
-			if(count($rez['CONTENT'])){
-				?>
-				<div class="pruduct_list">
-					<?
-					foreach($rez['CONTENT'] as $item){
-						echo theme('custom_productinlist_template', $item);
-					}
-					?>
-				</div>
-				<?
-			}
-			print($pagin);
-			print $output;
-		
-		if($term->description){
-		?>
-		<div class="term_deskription">
-			<?=$term->description?>
-		</div>
-		<?}?>
-	<?}else{?>
-		<?php print render($content); ?>
-	<?}?>
-  </div>
+    <div class="content">
+        <?
+        //kpr($term);
+        if ($term->vid == 1) {
+
+            $childs = taxonomy_get_tree($vid, $term->tid, null, true);?>
+            <div class="subterms">
+                <?
+                $i = 0;
+                while ($i < count($childs)) {
+                    $in_line = 0;
+                    //<div class="line">
+                    ?>
+
+                    <?while ($i < count($childs) && $in_line < 4) {
+                        $t = $childs[$i];?>
+                        <div class="item">
+                            <div class="img_frame">
+                                <? if ($t->field_ext_image['und'][0]) { ?>
+                                    <a href="/<?= drupal_get_path_alias('taxonomy/term/' . $t->tid) ?>">
+                                        <img src="<?= custom_get_file_url($t->field_ext_image['und'][0]['url']) ?>"
+                                             alt="<?= custom_get_file_url($t->field_ext_image['und'][0]['title']) ?>">
+                                    </a>
+                                <? } ?>
+                            </div>
+                            <a class='link_dop' href="/<?= drupal_get_path_alias('taxonomy/term/' . $t->tid) ?>"><?= $t->name ?></a>
+                        </div>
+                        <? ++$i;
+                        ++$in_line;
+                    } ?>
+
+                    <?
+                    //</div>
+                }?>
+            </div>
+        <? } ?>
+        <? if ($term->vid == 1 || $term->vid == 3) { ?>
+            <?
+
+            $param = array();
+            if ($term->vid == 1) {
+                if ($term->field_xid['und'][0]['value']) {
+                    if ($term->field_xid['und'][0]['value'] < 100000) {
+                        $param['group'] = $term->field_xid['und'][0]['value'];
+                    } else {
+                        $param['type_e'] = $term->field_xid['und'][0]['value'] - 100000;
+                    }
+                }
+            } else if ($term->vid == 3) {
+                if ($term->field_xid['und'][0]['value']) {
+                    $param['mark'] = $term->field_xid['und'][0]['value'];
+                }
+            }
+            $rez = custom_get_reguest_GET_filter('getoffersequipment', $param);
+            if ($term->vid == 1 && $param['type_e']) {
+                $filter = custom_pagin_filter_GET();
+                print $filter;
+            }
+            $pagin = custom_pagin_sort_GET($rez);
+            $block = block_load('block', '8');
+            $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
+            $output = render($render_array);
+            print $output;
+            print($pagin);
+            if (count($rez['CONTENT'])) {
+                ?>
+                <div class="pruduct_list">
+                    <?
+                    foreach ($rez['CONTENT'] as $item) {
+                        echo theme('custom_productinlist_template', $item);
+                    }
+                    ?>
+                </div>
+            <?
+            }
+            print($pagin);
+            print $output;
+
+            if ($term->description) {
+                ?>
+                <div class="term_deskription">
+                    <?= $term->description ?>
+                </div>
+            <? } ?>
+        <? } else { ?>
+            <?php print render($content); ?>
+        <? } ?>
+    </div>
 </div>

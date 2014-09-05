@@ -23,37 +23,37 @@
  *
  * @ingroup views_templates
  */
- foreach ($fields as $id => $field){
-	$arr[] = $id;
- }
- //kpr($arr);
- $show_out = array('field_autor');
+foreach ($fields as $id => $field) {
+    $arr[] = $id;
+}
+//kpr($arr);
+$show_out = array('field_autor');
 ?>
 <div class="inner_fields">
-	<?php foreach ($fields as $id => $field): ?>
-		<?if(!in_array($id, $show_out)){?>
-			<?php if (!empty($field->separator)): ?>
-				<?php print $field->separator; ?>
-			<?php endif; ?>
+    <?php foreach ($fields as $id => $field): ?>
+        <? if (!in_array($id, $show_out)) { ?>
+            <?php if (!empty($field->separator)): ?>
+                <?php print $field->separator; ?>
+            <?php endif; ?>
 
-			<?php print $field->wrapper_prefix; ?>
-			<?php print $field->label_html; ?>
-			<?php print $field->content; ?>
-			<?php print $field->wrapper_suffix; ?>
-		<?}?>
-	<?php endforeach; ?>
+            <?php print $field->wrapper_prefix; ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print $field->wrapper_suffix; ?>
+        <? } ?>
+    <?php endforeach; ?>
 </div>
 <div class="outer_fields">
-	<?php foreach ($fields as $id => $field): ?>
-		<?if(in_array($id, $show_out)){?>
-			<?php if (!empty($field->separator)): ?>
-				<?php print $field->separator; ?>
-			<?php endif; ?>
+    <?php foreach ($fields as $id => $field): ?>
+        <? if (in_array($id, $show_out)) { ?>
+            <?php if (!empty($field->separator)): ?>
+                <?php print $field->separator; ?>
+            <?php endif; ?>
 
-			<?php print $field->wrapper_prefix; ?>
-			<?php print $field->label_html; ?>
-			<?php print $field->content; ?>
-			<?php print $field->wrapper_suffix; ?>
-		<?}?>
-	<?php endforeach; ?>
+            <?php print $field->wrapper_prefix; ?>
+            <?php print $field->label_html; ?>
+            <?php print $field->content; ?>
+            <?php print $field->wrapper_suffix; ?>
+        <? } ?>
+    <?php endforeach; ?>
 </div>

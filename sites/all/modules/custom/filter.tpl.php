@@ -23,7 +23,7 @@
 				<?
 				foreach($manufacturer as $term){
 				$class = '';
-				if(in_array($term->field_xid['und'][0]['value'], $marks)){
+				if(is_array($marks) && in_array($term->field_xid['und'][0]['value'], $marks)){
 					$class='selected="selected"';
 				}				
 				?>

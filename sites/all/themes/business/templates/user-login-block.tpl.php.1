@@ -1,0 +1,24 @@
+<form accept-charset="UTF-8" id="user-login" method="post" action="/user">
+    <div>
+        <div class="form-item form-type-textfield form-item-name">
+            <label for="edit-name">Имя пользователя <span title="Обязательное поле" class="form-required">*</span></label>
+            <input type="text" class="form-text required" maxlength="60" size="60" value="" name="name" id="edit-name">
+
+            <div class="description">Укажите ваше имя на сайте Komimport.</div>
+        </div>
+        <div class="form-item form-type-password form-item-pass">
+            <label for="edit-pass">Пароль <span title="Обязательное поле" class="form-required">*</span></label>
+            <input type="password" class="form-text required" maxlength="128" size="60" name="pass" id="edit-pass">
+
+            <div class="description">Укажите пароль, соответствующий вашему имени пользователя.</div>
+        </div>
+        <input type="hidden" value="form-JK1UfqZLjfk7xJQx3rqm7xVoX5mXgXHtROg5A-yOr90" name="form_build_id">
+        <input type="hidden" value="user_login" name="form_id">
+
+        <div id="edit-actions" class="form-actions form-wrapper"><input type="submit" class="form-submit" value="Вход" name="op" id="edit-submit"></div>
+    </div>
+</form>
+
+<?php
+dpm(get_defined_vars());
+?>

@@ -55,33 +55,35 @@
  */
 ?>
 <div class="<?php print $classes . ' ' . $zebra; ?>"<?php print $attributes; ?>>
-  
-  <header>
-    <?php print $picture ?>
-    
-    <?php print render($title_prefix); ?>
-    <h3 class="comment-title"><?php print $title ?></h3>
-    <?php print render($title_suffix); ?>
-    
-    <div class="submitted"><?php print $author; ?> - <?php print $created; ?></div>
 
-    <?php if ($new): ?>
-      <span class="new"><?php print $new ?></span>
-    <?php endif; ?>
-  </header><!-- /.header -->
+    <header>
+        <?php print $picture ?>
 
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php hide($content['links']); print render($content); ?>
-    <?php if ($signature): ?>
-    <div class="user-signature clearfix">
-      <?php print $signature ?>
+        <?php print render($title_prefix); ?>
+        <h3 class="comment-title"><?php print $title ?></h3>
+        <?php print render($title_suffix); ?>
+
+        <div class="submitted"><?php print $author; ?> - <?php print $created; ?></div>
+
+        <?php if ($new): ?>
+            <span class="new"><?php print $new ?></span>
+        <?php endif; ?>
+    </header>
+    <!-- /.header -->
+
+    <div class="content"<?php print $content_attributes; ?>>
+        <?php hide($content['links']);
+        print render($content); ?>
+        <?php if ($signature): ?>
+            <div class="user-signature clearfix">
+                <?php print $signature ?>
+            </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
-  </div>
 
-  <?php if (!empty($content['links'])): ?>
-    <footer>
-      <?php print render($content['links']) ?>
-    </footer>
-  <?php endif; ?>
+    <?php if (!empty($content['links'])): ?>
+        <footer>
+            <?php print render($content['links']) ?>
+        </footer>
+    <?php endif; ?>
 </div> <!-- /.comment -->
