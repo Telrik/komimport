@@ -136,7 +136,7 @@ if(arg(0) == 'node' && $node && $node->field_page_h1['und'][0]['value']){
 				  <?php print render($page['sidebar_first']); ?>
 					
 				  <?
-					if(!drupal_is_front_page() && !($node && $node->nid == 28)){
+					if(!drupal_is_front_page() && !(isset($node) && $node->nid == 28)){
 						$var = views_embed_view('reviews', 'block_1');
 						echo $var;
 					}

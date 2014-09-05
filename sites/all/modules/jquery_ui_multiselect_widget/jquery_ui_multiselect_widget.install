@@ -21,6 +21,7 @@ function jquery_ui_multiselect_widget_install() {
   variable_set('jquery_ui_multiselect_widget_classes', '');
   variable_set('jquery_ui_multiselect_widget_filter_width', 100);
   variable_set('jquery_ui_multiselect_widget_filter_auto_reset', FALSE);
+  variable_set('jquery_ui_multiselect_widget_path_match_exclude', 'admin/*');
 }
 
 /**

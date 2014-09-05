@@ -50,7 +50,7 @@ function jquery_ui_multiselect_widget_settings_form() {
       'visible' => array(
         "input[name='jquery_ui_multiselect_widget_filter']" => array(
           'checked' => TRUE))));
-
+  // Subselector
   $form['jquery_ui_multiselect_widget_subselector'] = array(
     '#type' => 'textfield',
     '#title' => t('JQuery subselector'),
@@ -58,7 +58,14 @@ function jquery_ui_multiselect_widget_settings_form() {
         "You may optionally use this subselector to reduce the '&lt;select&gt;' DOM context which to use jQuery UI Multiselect Widget on. For example add '.my-select' to only use for selects with this class."),
     '#required' => FALSE,
     '#default_value' => variable_get('jquery_ui_multiselect_widget_subselector', ''));
-
+  // Exclude
+  $form['jquery_ui_multiselect_widget_path_match_exclude'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Exclude the following path(s)'),
+    '#description' => t(
+        "The widget will NOT be used for paths that match these patterns. This is used ADDITIONALLY to the subselector option.") . ' ' . t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page."),
+    '#required' => FALSE,
+    '#default_value' => variable_get('jquery_ui_multiselect_widget_path_match_exclude', ''));
   // Options
   $form['jquery_ui_multiselect_widget_header'] = array(
     '#type' => 'checkbox',

@@ -1,271 +1,297 @@
 <?php
-function custom_custom_theme() {
-  if (($_GET['ajax'] && $_GET['ajax'] == 1) || $_GET['sid'] ) {
+function custom_custom_theme()
+{
+    if ((isset($_GET['ajax']) && $_GET['ajax'] == 1) || isset($_GET['sid'])) {
+        return 'empty';
+    }
+    if (arg(0) == 'node') {
+        $node = node_load(arg(1));
+        if ($node->type == 'review') {
+            return 'empty';
+        }
+    }
+}
+
+function custom_form_alter(&$form, &$form_state, $form_id)
+{
+    if ($form_id == 'webform_client_form_34') {
+        $form['submitted']['naimenovanie_tovara']['#value'] = drupal_get_title();
+    }
+    if ($form_id == 'search_block_form') {
+        //kpr($form['search_block_form']);
+        $form['search_block_form']['#title'] = '<div class="find_hd">' . variable_get('custom_search_header') . ' <span class="asc" title="' . variable_get('custom_search_title') . '"></span></div>';
+        $form['search_block_form']['#title_display'] = 'before';
+        $form['search_block_form']['#description'] = variable_get('custom_search_description');
+        $form['search_block_form']['#default_value'] = variable_get('custom_search_bot_text');
+    }
+
+}
+
+function custom_rev_stat($art)
+{
+    $query = db_select('field_data_field_good_id', 'good');
+    $query->join('field_data_field_rate', 'rate', 'rate.entity_id = good.entity_id');
+    $query->condition('field_good_id_value', $art);
+    $query->fields('rate', array('field_rate_rating'));
+    $query = $query->execute();
+    $rez = $query->fetchAll();
+    $rezult = array();
+    $rezult['count'] = count($rez);
+    $sum = 0.0;
+    foreach ($rez as $rv) {
+        $sum += $rv->field_rate_rating;
+    }
+    $rezult['rate'] = round(($sum / count($rez)) / 20);
+    return $rezult;
+}
+
+function custom_rev_node($art)
+{
+    module_load_include('inc', 'node', 'node.pages');
+    $node_type = 'review';
+    $form_id = $node_type . '_node_form';
+    global $user;
+    $node = new stdClass();
+    $node->uid = $user->uid;
+    $node->name = (isset($user->name) ? $user->name : '');
+    $node->type = $node_type;
+    $node->language = '';
+    node_object_prepare($node);
+    $output = drupal_get_form($form_id, $node);
+    $arr = array('title', 'actions', 'body', 'field_rate', 'field_autor', 'field_good_id');
+    foreach ($output as $key => &$line) {
+        if ($key[0] !== '#' && !in_array($key, $arr) && $line['#theme'] != 'hidden') {
+            hide($output[$key]);
+        }
+    }
+    $output['field_good_id']['und'][0]['value']['#value'] = $art;
+    $output['field_good_id']['und'][0]['value']['#type'] = 'hidden';
+    $output['field_good_id']['und'][0]['value']['#theme'] = 'hidden';
+    $output['field_good_id']['und'][0]['value']['#title_display'] = 'invisible';
+    unset($output['body']['und'][0]['value']['summary']);
+
+
+    hide($output['actions']['preview']);
+
+    unset($line);
+    //kpr($output, false);
+
+    //hide($output['field_additions']);
+    //hide($output['field_add_rez']);
+    //hide($output['body']['und'][0]['summary']);
+    $output['actions']['submit']['#value'] = "Отправить";
+    return "<h2>" . t('Нипишите отзыв') . "</h2>" . drupal_render($output);
+}
+
+function custom_menu()
+{
+    $items['product/%'] = array(
+        'page callback' => 'custom_product_card',
+        'access arguments' => array('access content'),
+    );
+    $items['product'] = array(
+        'page callback' => 'custom_product',
+        'access arguments' => array('access content'),
+    );
+    $items['custom_ajax'] = array(
+        'page callback' => 'custom_ajax_heandler',
+        'access arguments' => array('access content'),
+        //"theme callback"  => 'empty',
+        "theme callback" => 'custom_empty',
+    );
+    $items['admin/content/custom'] = array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('custom_variables_form'),
+    );
+    return $items;
+}
+
+function custom_variables_form($form_state)
+{
+    $form['add_value'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Добавить переменную'),
+        '#weight' => 3,
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#tree' => TRUE,
+    );
+
+
+    $form['add_value']['add_name'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Название',
+    );
+    $form['add_value']['add_val'] = array(
+        '#type' => 'textarea',
+        '#rows' => 2,
+        '#title' => 'Значение',
+    );
+    $form['values'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Переменные'),
+        '#weight' => 3,
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#tree' => TRUE,
+    );
+    $varibles = explode(',', variable_get('custom_variables'));
+    foreach ($varibles as $var) {
+        $var_val = variable_get($var);
+        $form['values'][$var] = array(
+            '#type' => 'textarea',
+            '#title' => $var,
+            '#rows' => 2,
+            '#value' => $var_val
+        );
+    }
+    $form['text'] = array(
+        '#type' => 'markup',
+        '#markup' => variable_get('custom_variables'),
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+        '#weight' => 10,
+    );
+
+    return $form;
+}
+
+function custom_variables_form_submit($form, &$form_state)
+{
+    if (
+        $form_state['input']['add_value']['add_name'] &&
+        $form_state['input']['add_value']['add_val']
+    ) {
+        $add = $form_state['input']['add_value'];
+        $custom_vars = variable_get('custom_variables');
+        $vars = explode(',', $custom_vars);
+        $vars[] = $add['add_name'];
+        variable_set('custom_variables', implode(',', $vars));
+        variable_set($add['add_name'], $add['add_val']);
+    }
+
+    foreach ($form_state['input']['values'] as $name => $value) {
+        variable_set($name, $value);
+    }
+}
+
+function custom_empty()
+{
     return 'empty';
-  }
-  if(arg(0) == 'node'){
-	$node = node_load(arg(1));
-	if($node->type == 'review'){
-		return 'empty';
-	}
-  }
 }
-function custom_form_alter(&$form, &$form_state, $form_id){
-	if($form_id == 'webform_client_form_34'){
-		$form['submitted']['naimenovanie_tovara']['#value'] = drupal_get_title();
-	}
-	if($form_id == 'search_block_form'){
-		//kpr($form['search_block_form']);
-		$form['search_block_form']['#title'] = '<div class="find_hd">'.variable_get('custom_search_header').' <span class="asc" title="'.variable_get('custom_search_title').'"></span></div>';
-		$form['search_block_form']['#title_display'] = 'before';
-		$form['search_block_form']['#description'] = variable_get('custom_search_description');
-		$form['search_block_form']['#default_value'] = variable_get('custom_search_bot_text');
-	}
-	
-}
-function custom_rev_stat($art){
-	$query = db_select('field_data_field_good_id', 'good');
-	$query->join('field_data_field_rate', 'rate', 'rate.entity_id = good.entity_id');
-	$query->condition('field_good_id_value',$art);
-	$query->fields('rate',array('field_rate_rating'));
-	$query = $query->execute();
-	$rez = $query->fetchAll();
-	$rezult = array();
-	$rezult['count'] = count($rez);
-	$sum = 0.0;
-	foreach($rez as $rv){
-		$sum += $rv->field_rate_rating;
-	}
-	$rezult['rate'] = round(($sum / count($rez))/20);
-	return $rezult;
-}
-function custom_rev_node($art){
-	module_load_include('inc', 'node', 'node.pages'); 
-	$node_type = 'review'; 
-	$form_id = $node_type . '_node_form'; 
-	global $user; 
-	$node = new stdClass(); 
-	$node->uid = $user->uid; 
-	$node->name = (isset($user->name) ? $user->name : ''); 
-	$node->type = $node_type; 
-	$node->language = ''; 
-	node_object_prepare($node); 
-	$output = drupal_get_form($form_id, $node);
-	$arr = array('title', 'actions', 'body', 'field_rate', 'field_autor', 'field_good_id');
-	foreach($output as $key=>&$line){
-		if($key[0] !== '#' && !in_array($key, $arr) && $line['#theme'] != 'hidden'){
-			hide($output[$key]);
-		}
-	}
-	$output['field_good_id']['und'][0]['value']['#value'] = $art;
-	$output['field_good_id']['und'][0]['value']['#type'] = 'hidden';
-	$output['field_good_id']['und'][0]['value']['#theme'] = 'hidden';
-	$output['field_good_id']['und'][0]['value']['#title_display'] = 'invisible';
-	unset($output['body']['und'][0]['value']['summary']);
-	
-	
-	hide($output['actions']['preview']);
-	
-	unset($line);
-	//kpr($output, false);
 
-	//hide($output['field_additions']);
-	//hide($output['field_add_rez']);
-	//hide($output['body']['und'][0]['summary']);
-	$output['actions']['submit']['#value'] = "Отправить";
-	return "<h2>".t('Нипишите отзыв')."</h2>".drupal_render($output);
+function custom_ajax_heandler()
+{
+    $rez = array();
+    switch ($_GET['type']) {
+        case 'add_to_cart':
+        {
+            custom_add_to_cart($rez);
+            break;
+        }
+        case 'card_count':
+        {
+            custom_card_count($rez);
+            break;
+        }
+    }
+    return json_encode($rez);
 }
-function custom_menu() {
-	$items['product/%'] = array(
-		'page callback' => 'custom_product_card',
-		'access arguments' => array('access content'),
-	);
-	$items['product'] = array(
-		'page callback' => 'custom_product',
-		'access arguments' => array('access content'),
-	);
-	$items['custom_ajax'] = array(
-		'page callback' => 'custom_ajax_heandler',
-		'access arguments' => array('access content'),
-		//"theme callback"  => 'empty',
-		"theme callback"  => 'custom_empty',
-	);
-	$items['admin/content/custom'] = array(
-		'page callback' => 'drupal_get_form',
-		'page arguments' => array('custom_variables_form'),
-	);
-	return $items;
-}
-function custom_variables_form($form_state){
-	$form['add_value'] = array(
-	  '#type' => 'fieldset', 
-	  '#title' => t('Добавить переменную'), 
-	  '#weight' => 3, 
-	  '#collapsible' => TRUE, 
-	  '#collapsed' => TRUE, 
-	  '#tree' => TRUE,
-	);
-	
 
-	$form['add_value']['add_name'] = array(
-		'#type' => 'textfield',
-		'#title' => 'Название',
-	);
-	$form['add_value']['add_val'] = array(
-		'#type' => 'textarea',
-		'#rows' => 2,
-		'#title' => 'Значение',
-	);
-	$form['values'] = array(
-	  '#type' => 'fieldset', 
-	  '#title' => t('Переменные'), 
-	  '#weight' => 3, 
-	  '#collapsible' => TRUE, 
-	  '#collapsed' => TRUE, 
-	  '#tree' => TRUE,
-	);
-	$varibles = explode(',',variable_get('custom_variables'));
-	foreach($varibles as $var){
-		$var_val = variable_get($var);
-		$form['values'][$var] = array(
-			'#type' => 'textarea',
-			'#title' => $var,
-			'#rows' => 2,
-			'#value' => $var_val
-		);
-	}
-	$form['text'] = array(
-		'#type' => 'markup',
-		'#markup' => variable_get('custom_variables'),
-	);
-	$form['submit'] = array(
-		'#type' => 'submit',
-		'#value' => 'Submit',
-		'#weight' => 10, 
-	);
-
-	return $form;
-}
-function custom_variables_form_submit($form, &$form_state) {
-	if(
-		$form_state['input']['add_value']['add_name'] &&
-		$form_state['input']['add_value']['add_val']
-	){
-		$add = $form_state['input']['add_value'];
-		$custom_vars = variable_get('custom_variables');
-		$vars = explode(',', $custom_vars);
-		$vars[] = $add['add_name'];
-		variable_set('custom_variables', implode(',', $vars));
-		variable_set($add['add_name'], $add['add_val']);
-	}
-	
-	foreach($form_state['input']['values'] as $name=>$value ){
-		variable_set($name, $value);
-	}
-}
-function custom_empty(){
-	return 'empty';
-}
-function custom_ajax_heandler(){
-	$rez = array();
-	switch($_GET['type']){
-		case 'add_to_cart': {
-			custom_add_to_cart($rez);
-			break;
-		}
-		case 'card_count': {
-			custom_card_count($rez);
-			break;
-		}
-	}
-	return json_encode($rez);
-}
-function custom_card_count(&$rez){
-	global $user;
+function custom_card_count(&$rez)
+{
+    global $user;
     $current_order = commerce_cart_order_load($user->uid);
     if (count($current_order->commerce_line_items) > 0) {
-		$i = 0;
-		
-		$line_items = $current_order->commerce_line_items;
-		
-		foreach ($line_items['und'] as $key => $value) {
-			if(isset($_GET['qnt'][$i])){
-				if($_GET['qnt'][$i] == 0){
-					commerce_line_item_delete($value['line_item_id']);
-				}else{
-					$line_item = commerce_line_item_load($value['line_item_id']);
-					$line_item->quantity = $_GET['qnt'][$i];
-					commerce_line_item_save($line_item);
-				}
-			}
-			$i++;
-		}
+        $i = 0;
+
+        $line_items = $current_order->commerce_line_items;
+
+        foreach ($line_items['und'] as $key => $value) {
+            if (isset($_GET['qnt'][$i])) {
+                if ($_GET['qnt'][$i] == 0) {
+                    commerce_line_item_delete($value['line_item_id']);
+                } else {
+                    $line_item = commerce_line_item_load($value['line_item_id']);
+                    $line_item->quantity = $_GET['qnt'][$i];
+                    commerce_line_item_save($line_item);
+                }
+            }
+            $i++;
+        }
     }
-	$rez['status'] = 'ok';
-	$block = block_load('commerce_cart', 'cart');
-	$block_content = _block_render_blocks(array($block));
-	$build = _block_get_renderable_array($block_content);
-	$block_rendered = drupal_render($build);
-	$rez['card'] = $block_rendered;
-	return;
+    $rez['status'] = 'ok';
+    $block = block_load('commerce_cart', 'cart');
+    $block_content = _block_render_blocks(array($block));
+    $build = _block_get_renderable_array($block_content);
+    $block_rendered = drupal_render($build);
+    $rez['card'] = $block_rendered;
+    return;
 }
-function custom_add_to_cart(&$rez){
-	global $user;
-	if(!$_GET['sku']){
-		$rez['status'] = 'error';
-		$rez['message'] = 'sku not set';
-		return;
-	}
-	$sku = $_GET['sku'];
-	$qnt = $_GET['qnt'] ? $_GET['qnt'] : 1;
-	
-	$product = commerce_product_load_by_sku($sku);
-	
-	$prod_id;
-	if(!$product){
-		$rezult = custom_get_reguest('type=komimport&request=getoffersequipment&id='.$sku);
-		
-		$rezult = $rezult["CONTENT"][key($rezult["CONTENT"])];
-		
-		$img = null;
-		if(count($rezult['OE_IMAGES']['IMAGES'])){
-			$img = $rezult['OE_IMAGES']['IMAGES'][key($rezult['OE_IMAGES']['IMAGES'])];
-		}else if(count($rezult['M_IMAGES']['IMAGES'])){
-			$img = $rezult['M_IMAGES']['IMAGES'][key($rezult['M_IMAGES']['IMAGES'])];
-		}
-		$prod_id = commerce_installments_create_product('product', 
-			array('price'=>($rezult['PRICE']['RUR'])), 
-			array(
-				'uid' => $user->uid, 
-				'title' => $rezult['TE_name'].' '.$rezult['B_name'].' '.$rezult['M_name'], 
-				'sku' => $sku,
-				'image' => json_encode($img),
-			)
-		);
-		
-	}else{
-		$prod_id = $product->product_id;
-	}
-	
-	commerce_cart_line_item_add($prod_id, $qnt, $user->uid);
-	$rez['status'] = 'ok';
-	
-	$block = block_load('commerce_cart', 'cart');
-	$block_content = _block_render_blocks(array($block));
-	$build = _block_get_renderable_array($block_content);
-	$block_rendered = drupal_render($build);
-	$rez['card'] = $block_rendered;
-	
-	return;
+
+function custom_add_to_cart(&$rez)
+{
+    global $user;
+    if (!$_GET['sku']) {
+        $rez['status'] = 'error';
+        $rez['message'] = 'sku not set';
+        return;
+    }
+    $sku = $_GET['sku'];
+    $qnt = $_GET['qnt'] ? $_GET['qnt'] : 1;
+
+    $product = commerce_product_load_by_sku($sku);
+
+    $prod_id;
+    if (!$product) {
+        $rezult = custom_get_reguest('type=komimport&request=getoffersequipment&id=' . $sku);
+
+        $rezult = $rezult["CONTENT"][key($rezult["CONTENT"])];
+
+        $img = null;
+        if (count($rezult['OE_IMAGES']['IMAGES'])) {
+            $img = $rezult['OE_IMAGES']['IMAGES'][key($rezult['OE_IMAGES']['IMAGES'])];
+        } else if (count($rezult['M_IMAGES']['IMAGES'])) {
+            $img = $rezult['M_IMAGES']['IMAGES'][key($rezult['M_IMAGES']['IMAGES'])];
+        }
+        $prod_id = commerce_installments_create_product('product',
+            array('price' => ($rezult['PRICE']['RUR'])),
+            array(
+                'uid' => $user->uid,
+                'title' => $rezult['TE_name'] . ' ' . $rezult['B_name'] . ' ' . $rezult['M_name'],
+                'sku' => $sku,
+                'image' => json_encode($img),
+            )
+        );
+
+    } else {
+        $prod_id = $product->product_id;
+    }
+
+    commerce_cart_line_item_add($prod_id, $qnt, $user->uid);
+    $rez['status'] = 'ok';
+
+    $block = block_load('commerce_cart', 'cart');
+    $block_content = _block_render_blocks(array($block));
+    $build = _block_get_renderable_array($block_content);
+    $block_rendered = drupal_render($build);
+    $rez['card'] = $block_rendered;
+
+    return;
 }
-function commerce_cart_line_item_add($product_id, $quantity, $uid) {
-  $line_item = NULL;
-  if ($product = commerce_product_load($product_id)) {
-    $line_item = commerce_product_line_item_new($product, $quantity);
-    $line_item = commerce_cart_product_add($uid, $line_item);
-  }
-  return $line_item;
+
+function commerce_cart_line_item_add($product_id, $quantity, $uid)
+{
+    $line_item = NULL;
+    if ($product = commerce_product_load($product_id)) {
+        $line_item = commerce_product_line_item_new($product, $quantity);
+        $line_item = commerce_cart_product_add($uid, $line_item);
+    }
+    return $line_item;
 }
+
 /**
  * Create a product programmatically.
  *
@@ -294,366 +320,394 @@ function commerce_cart_line_item_add($product_id, $quantity, $uid) {
  * @return
  *   The ID of the created product.
  */
- 
-function commerce_installments_create_product($product_type, $values, $extras) {
-	
-  $form_state = array();
-  $form_state['values'] = $values;
-  $form = array();
-  $form['#parents'] = array();
 
-  // Generate a new product object
-  $new_product = commerce_product_new($product_type);
+function commerce_installments_create_product($product_type, $values, $extras)
+{
 
-  //$new_product->status = $extras['status'];
-  $new_product->uid = $extras['uid'];
+    $form_state = array();
+    $form_state['values'] = $values;
+    $form = array();
+    $form['#parents'] = array();
 
-  $new_product->sku = $extras['sku'];
-  $new_product->title = $extras['title'];
-  $new_product->created = $new_product->changed = time();
+    // Generate a new product object
+    $new_product = commerce_product_new($product_type);
 
-  // field_original_order[und][0][target_id]
-  // $order = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_order'])));
-  // $form_state['values']['field_original_order'] = $order;
-  if($extras['image']){
-	  $image = array(LANGUAGE_NONE => array(0 => array('value' => $extras['image'])));
-	  $form_state['values']['field_image_href'] = $image;
-  }
+    //$new_product->status = $extras['status'];
+    $new_product->uid = $extras['uid'];
 
-  // field_original_line_item[und][0][target_id]
-  /*$line_item = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_line_item'])));
-  $form_state['values']['field_original_line_item'] = $line_item;*/
+    $new_product->sku = $extras['sku'];
+    $new_product->title = $extras['title'];
+    $new_product->created = $new_product->changed = time();
 
-  /*
-  $product = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_product'])));
-  $form_state['values']['field_original_product'] = $product;*/
+    // field_original_order[und][0][target_id]
+    // $order = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_order'])));
+    // $form_state['values']['field_original_order'] = $order;
+    if ($extras['image']) {
+        $image = array(LANGUAGE_NONE => array(0 => array('value' => $extras['image'])));
+        $form_state['values']['field_image_href'] = $image;
+    }
 
-  //commerce_price[und][0][amount]
-  $price = array(LANGUAGE_NONE => array(0 => array(
-    'amount' => $values['price']*100,
-    'currency_code' => 'RUB',//commerce_default_currency(),
-  )));
-  $form_state['values']['commerce_price'] = $price;
+    // field_original_line_item[und][0][target_id]
+    /*$line_item = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_line_item'])));
+    $form_state['values']['field_original_line_item'] = $line_item;*/
 
-  // field_due_date[und][0][value][date]
-  // $due_date = array(LANGUAGE_NONE => array(0 => array('date' => $values['due_date'])));
-  // $form_state['values']['field_due_date'] = $due_date;
+    /*
+    $product = array(LANGUAGE_NONE => array(0 => array('target_id' => $values['original_product'])));
+    $form_state['values']['field_original_product'] = $product;*/
 
-  // Notify field widgets to save their field data
-  field_attach_submit('commerce_product', $new_product, $form, $form_state);
-  commerce_product_save($new_product);
-  return $new_product->product_id;
+    //commerce_price[und][0][amount]
+    $price = array(LANGUAGE_NONE => array(0 => array(
+        'amount' => $values['price'] * 100,
+        'currency_code' => 'RUB', //commerce_default_currency(),
+    )));
+    $form_state['values']['commerce_price'] = $price;
+
+    // field_due_date[und][0][value][date]
+    // $due_date = array(LANGUAGE_NONE => array(0 => array('date' => $values['due_date'])));
+    // $form_state['values']['field_due_date'] = $due_date;
+
+    // Notify field widgets to save their field data
+    field_attach_submit('commerce_product', $new_product, $form, $form_state);
+    commerce_product_save($new_product);
+    return $new_product->product_id;
 }
+
 /**
  * Implements hook_block_info().
  */
-function custom_block_info() {
-  $blocks['hit_product'] = array(
-    'info' => t('Product xit')
-  );
-  $blocks['spec_product'] = array(
-    'info' => t('Product spec')
-  );
-  return $blocks;
+function custom_block_info()
+{
+    $blocks['hit_product'] = array(
+        'info' => t('Product xit')
+    );
+    $blocks['spec_product'] = array(
+        'info' => t('Product spec')
+    );
+    return $blocks;
 }
-  
-/**
-  * Implements hook_block_view().
-  */
-function custom_block_view($delta='') {
-  $block = array();
 
-  switch ($delta) {
-    case 'hit_product':
-      $block['subject'] = t('Block Name');
-      $block['content'] = custom_get_hit_product();
-      break;
-	case 'spec_product':
-      $block['subject'] = t('Block Name');
-      $block['content'] = custom_get_spec_product();
-      break;
-  }
-  
-  return $block;
+/**
+ * Implements hook_block_view().
+ */
+function custom_block_view($delta = '')
+{
+    $block = array();
+
+    switch ($delta) {
+        case 'hit_product':
+            $block['subject'] = t('Block Name');
+            $block['content'] = custom_get_hit_product();
+            break;
+        case 'spec_product':
+            $block['subject'] = t('Block Name');
+            $block['content'] = custom_get_spec_product();
+            break;
+    }
+
+    return $block;
 }
-function custom_theme() {
-    $themes = array (
-		// товар в списке
+
+function custom_theme()
+{
+    $themes = array(
+        // товар в списке
         'custom_productinlist_template' => array(
-            'template' => 'productinlist', 
+            'template' => 'productinlist',
             'arguments' => array(),
         ),
-		// карточка товара
-		'custom_productcard_template' => array(
-            'template' => 'productcard', 
+        // карточка товара
+        'custom_productcard_template' => array(
+            'template' => 'productcard',
             'arguments' => array(),
         ),
-		// пагинация и сортировка
-		'custom_paginate' => array(
-            'template' => 'paginate', 
+        // пагинация и сортировка
+        'custom_paginate' => array(
+            'template' => 'paginate',
             'arguments' => array(),
         ),
-		// фильтрация
-		'custom_filter' => array(
-            'template' => 'filter', 
+        // фильтрация
+        'custom_filter' => array(
+            'template' => 'filter',
             'arguments' => array(),
         ),
-		// разделы
-		'custom_terms' => array(
-            'template' => 'terms', 
+        // разделы
+        'custom_terms' => array(
+            'template' => 'terms',
             'arguments' => array(),
         ),
     );
     return $themes;
 }
-function custom_get_file_url($dir, $name = null, $trumb = null){
-	if($trumb){
-		$trumb = '/'.$trumb;
-	}else{
-		$trumb = '';
-	}
-	if($name == null){
-		return 'http://partist.ru/'.$dir;
-	}else{
-		return 'http://partist.ru/'.$dir.$trumb.'/'.$name;
-	}
+
+function custom_get_file_url($dir, $name = null, $trumb = null)
+{
+    if ($trumb) {
+        $trumb = '/' . $trumb;
+    } else {
+        $trumb = '';
+    }
+    if ($name == null) {
+        return 'http://partist.ru/' . $dir;
+    } else {
+        return 'http://partist.ru/' . $dir . $trumb . '/' . $name;
+    }
 }
-function custom_get_hit_product(){
-	$rez = custom_get_reguest('type=komimport&request=getoffersequipment');
-	//return '<pre>'.var_export( $rez, true).'</pre>';
-	if(count($rez['CONTENT'])){
-		$out = '';
-		foreach($rez['CONTENT'] as $item){
-			$out .= theme('custom_productinlist_template', $item);
-		}
-		
-		return $out;
-	}
+
+function custom_get_hit_product()
+{
+    $rez = custom_get_reguest('type=komimport&request=getoffersequipment');
+    //return '<pre>'.var_export( $rez, true).'</pre>';
+    if (count($rez['CONTENT'])) {
+        $out = '';
+        foreach ($rez['CONTENT'] as $item) {
+            $out .= theme('custom_productinlist_template', $item);
+        }
+
+        return $out;
+    }
 }
-function custom_get_by_ids($ids){
-	$rez = custom_get_reguest('type=komimport&request=getoffersequipment&id[]='.implode('&id[]=', $ids));
-	//return '<pre>'.var_export( $rez, true).'</pre>';
-	if(count($rez['CONTENT'])){
-		$out = '';
-		foreach($rez['CONTENT'] as $item){
-			$out .= theme('custom_productinlist_template', $item);
-		}
-		
-		return $out;
-	}
+
+function custom_get_by_ids($ids)
+{
+    $rez = custom_get_reguest('type=komimport&request=getoffersequipment&id[]=' . implode('&id[]=', $ids));
+    //return '<pre>'.var_export( $rez, true).'</pre>';
+    if (count($rez['CONTENT'])) {
+        $out = '';
+        foreach ($rez['CONTENT'] as $item) {
+            $out .= theme('custom_productinlist_template', $item);
+        }
+
+        return $out;
+    }
 }
-function custom_get_spec_product(){
-	$rez = custom_get_reguest('type=komimport&request=getoffersequipment&special_offer=1');
-	//return '<pre>'.var_export( $rez, true).'</pre>';
-	if(count($rez['CONTENT'])){
-		$out = '';
-		foreach($rez['CONTENT'] as $item){
-			$out .= theme('custom_productinlist_template', $item);
-		}
-		
-		return $out;
-	}
+
+function custom_get_spec_product()
+{
+    $rez = custom_get_reguest('type=komimport&request=getoffersequipment&special_offer=1');
+    //return '<pre>'.var_export( $rez, true).'</pre>';
+    if (count($rez['CONTENT'])) {
+        $out = '';
+        foreach ($rez['CONTENT'] as $item) {
+            $out .= theme('custom_productinlist_template', $item);
+        }
+
+        return $out;
+    }
 }
+
 // для создания термина таксономии
-function custom_create_taxonomy_term($name, $vid, $xid, $parent_id = 0, $term = null, $group = null) {
-	if(!$term){
-		$term = new stdClass();
-	}
-	$term->name = $name;
-	$term->vid = $vid;
-	$term->field_xid['und'][0]['value'] = $xid;
-	$term->parent = array($parent_id);
-	
-	if($group['F_id']){
-		$term->field_ext_image['und'][0]['title'] = $group['F_name'];
-		$term->field_ext_image['und'][0]['url'] = $group['F_directory'].'/'.$group['F_file'];
-	}
-	taxonomy_term_save($term);
-	return $term->tid;
+function custom_create_taxonomy_term($name, $vid, $xid, $parent_id = 0, $term = null, $group = null)
+{
+    if (!$term) {
+        $term = new stdClass();
+    }
+    $term->name = $name;
+    $term->vid = $vid;
+    $term->field_xid['und'][0]['value'] = $xid;
+    $term->parent = array($parent_id);
+
+    if ($group['F_id']) {
+        $term->field_ext_image['und'][0]['title'] = $group['F_name'];
+        $term->field_ext_image['und'][0]['url'] = $group['F_directory'] . '/' . $group['F_file'];
+    }
+    taxonomy_term_save($term);
+    return $term->tid;
 }
+
 // для фильтрации товаров через get
-function custom_pagin_filter_GET($query_param) {
-	// получаем базовый урл и разбиваем запрос а массив
-	$get = parse_url($_SERVER['REQUEST_URI']);
-	$q = $get['query'];
-	$base = $get['path'].'?';
-	$args['sort'] = array();
-	$arr_query = new stdClass();
-	if($q){
-		parse_str($q, $arr_query);
-	}
-	// фильтрация по производителю
-	$terms = taxonomy_get_tree(3, 0, null, true);
-	$args['base'] = $base;
-	$args['arr_query'] = $arr_query;
-	
-	if(count($terms)){
-		$args['manufacturer'] = $terms;
-	}
-	
-	return theme('custom_filter', $args);
+function custom_pagin_filter_GET($query_param)
+{
+    // получаем базовый урл и разбиваем запрос а массив
+    $get = parse_url($_SERVER['REQUEST_URI']);
+    $q = $get['query'];
+    $base = $get['path'] . '?';
+    $args['sort'] = array();
+    $arr_query = new stdClass();
+    if ($q) {
+        parse_str($q, $arr_query);
+    }
+    // фильтрация по производителю
+    $terms = taxonomy_get_tree(3, 0, null, true);
+    $args['base'] = $base;
+    $args['arr_query'] = $arr_query;
+
+    if (count($terms)) {
+        $args['manufacturer'] = $terms;
+    }
+
+    return theme('custom_filter', $args);
 }
+
 // для пагинации и сортировки через GET
-function custom_pagin_sort_GET($query_param) {
-	// получаем базовый урл и разбиваем запрос а массив
-	$get = parse_url($_SERVER['REQUEST_URI']);
-	$q = $get['query'];
-	$base = $get['path'].'?';
-	$args['sort'] = array();
-	$arr_query = array();
-	parse_str($q, $arr_query);
-	// для сортировки
-	$sort_tmp_query_desc = $arr_query;
-	$sort_tmp_query_desc['sql_order_pole'] = "OE_price";
-	$sort_tmp_query_desc['sql_order_direction'] = 'desc';
-	$sort_tmp_query_ask = $arr_query;
-	$sort_tmp_query_ask['sql_order_pole'] = "OE_price";
-	$sort_tmp_query_ask['sql_order_direction'] = 'ask';
-	$sort = array();
-	$sort['price'] = 
-		array(
-			'desc'=> array(
-				'link'=>$base.http_build_query($sort_tmp_query_desc),
-				'name'=>'убыванию',
-			),
-			'ask'=> array(
-				'link'=>$base.http_build_query($sort_tmp_query_ask),
-				'name'=>'возрастанию',
-			)
-		);
-	$args['sort'] = $sort;
-	// для шага пагинации
-	$per_page = array();
-	$pages_interval = array(8, 12, 16);
-	$cur_interval = isset($arr_query['num_on_page']) ? $arr_query['num_on_page'] : $query_param['NUM_RECORD'];
-	foreach($pages_interval as $interval){
-		$link = $arr_query;
-		$link['num_on_page'] = $interval;
-		$ar = array(
-			'name'=> $interval
-		);
-		if($interval != $cur_interval){
-			$ar['link']= $base.http_build_query($link);
-		}			
-		$per_page[] = $ar;
-	}
-	$args['per_page'] = $per_page;
-	
-	// для пагинации
-	$page = 1;
-	if($arr_query['page']){
-		$page = $arr_query['page'];
-	}
-	$pages = array();
-	
-	$start_page = $page-4;
-	$end_page = $page+4;
-	if($start_page < 1){
-		$end_page += 1 - $start_page;
-		$start_page = 1;
-	}
-	if($end_page > $query_param['PAGES']){
-		$start_page += $query_param['PAGES'] - $end_page;
-		$end_page = $query_param['PAGES'];
-	}
-	if($start_page < 1){
-		$start_page = 1;
-	}
-	if($start_page != 1){
-		$link = $arr_query;
-		$link['page'] = $page-1;
-		$pages[] = array(
-			'link' => $base.http_build_query($link),
-			'name'=> '<',
-			'class'=> 'prev'
-		);
-	}
-	for($i = $start_page; $i <= $end_page; ++$i){
-		$ar = array('name'=> $i);
-		$link = $arr_query;
-		$link['page'] = $i;
-		if($page != $i){
-			$ar['link'] =  $base.http_build_query($link);
-		}
-		$pages[] = $ar;
-	}
-	if($end_page != $query_param['PAGES']){
-		$link = $arr_query;
-		$link['page'] = $page+1;
-		$pages[] = array(
-			'link' => $base.http_build_query($link),
-			'name'=> '>',
-			'class'=> 'next'
-		);
-	}
-	$args['pages'] = $pages;
-	return theme('custom_paginate', $args);
+function custom_pagin_sort_GET($query_param)
+{
+    // получаем базовый урл и разбиваем запрос а массив
+    $get = parse_url($_SERVER['REQUEST_URI']);
+    $q = $get['query'];
+    $base = $get['path'] . '?';
+    $args['sort'] = array();
+    $arr_query = array();
+    parse_str($q, $arr_query);
+    // для сортировки
+    $sort_tmp_query_desc = $arr_query;
+    $sort_tmp_query_desc['sql_order_pole'] = "OE_price";
+    $sort_tmp_query_desc['sql_order_direction'] = 'desc';
+    $sort_tmp_query_ask = $arr_query;
+    $sort_tmp_query_ask['sql_order_pole'] = "OE_price";
+    $sort_tmp_query_ask['sql_order_direction'] = 'ask';
+    $sort = array();
+    $sort['price'] =
+        array(
+            'desc' => array(
+                'link' => $base . http_build_query($sort_tmp_query_desc),
+                'name' => 'убыванию',
+            ),
+            'ask' => array(
+                'link' => $base . http_build_query($sort_tmp_query_ask),
+                'name' => 'возрастанию',
+            )
+        );
+    $args['sort'] = $sort;
+    // для шага пагинации
+    $per_page = array();
+    $pages_interval = array(8, 12, 16);
+    $cur_interval = isset($arr_query['num_on_page']) ? $arr_query['num_on_page'] : $query_param['NUM_RECORD'];
+    foreach ($pages_interval as $interval) {
+        $link = $arr_query;
+        $link['num_on_page'] = $interval;
+        $ar = array(
+            'name' => $interval
+        );
+        if ($interval != $cur_interval) {
+            $ar['link'] = $base . http_build_query($link);
+        }
+        $per_page[] = $ar;
+    }
+    $args['per_page'] = $per_page;
+
+    // для пагинации
+    $page = 1;
+    if ($arr_query['page']) {
+        $page = $arr_query['page'];
+    }
+    $pages = array();
+
+    $start_page = $page - 4;
+    $end_page = $page + 4;
+    if ($start_page < 1) {
+        $end_page += 1 - $start_page;
+        $start_page = 1;
+    }
+    if ($end_page > $query_param['PAGES']) {
+        $start_page += $query_param['PAGES'] - $end_page;
+        $end_page = $query_param['PAGES'];
+    }
+    if ($start_page < 1) {
+        $start_page = 1;
+    }
+    if ($start_page != 1) {
+        $link = $arr_query;
+        $link['page'] = $page - 1;
+        $pages[] = array(
+            'link' => $base . http_build_query($link),
+            'name' => '<',
+            'class' => 'prev'
+        );
+    }
+    for ($i = $start_page; $i <= $end_page; ++$i) {
+        $ar = array('name' => $i);
+        $link = $arr_query;
+        $link['page'] = $i;
+        if ($page != $i) {
+            $ar['link'] = $base . http_build_query($link);
+        }
+        $pages[] = $ar;
+    }
+    if ($end_page != $query_param['PAGES']) {
+        $link = $arr_query;
+        $link['page'] = $page + 1;
+        $pages[] = array(
+            'link' => $base . http_build_query($link),
+            'name' => '>',
+            'class' => 'next'
+        );
+    }
+    $args['pages'] = $pages;
+    return theme('custom_paginate', $args);
 }
+
 // для запросов с фильтрацией из GET
-function custom_get_reguest_GET_filter($request = 'getoffersequipment', $param_arr = array()) {
-	$i = 0;
-	$arr = array();
-	foreach($param_arr as $key=>&$val){
-		$arr[] = $key.'='.$val;
-	}
-	$arr = implode('&', $arr);
-	///
-	$get = parse_url($_SERVER['REQUEST_URI']);
-	$get = $get['query'];
-	
-	return custom_get_reguest("type=komimport&request=".$request."&".$arr."&".$get);
+function custom_get_reguest_GET_filter($request = 'getoffersequipment', $param_arr = array())
+{
+    $i = 0;
+    $arr = array();
+    foreach ($param_arr as $key => &$val) {
+        $arr[] = $key . '=' . $val;
+    }
+    $arr = implode('&', $arr);
+    ///
+    $get = parse_url($_SERVER['REQUEST_URI']);
+    $get = $get['query'];
+
+    return custom_get_reguest("type=komimport&request=" . $request . "&" . $arr . "&" . $get);
 }
+
 // для всех запросов
-function custom_get_reguest($request) {
-	$url = 'http://partist.ru/connector.php?'.$request;
-	//kpr($url);
-	if( $curl = curl_init() ) {
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
-		$out = curl_exec($curl);
-		curl_close($curl);
-		return json_decode ($out, true);
-	}
-	
+function custom_get_reguest($request)
+{
+    $url = 'http://partist.ru/connector.php?' . $request;
+    //kpr($url);
+    if ($curl = curl_init()) {
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $out = curl_exec($curl);
+        curl_close($curl);
+        return json_decode($out, true);
+    }
+
 }
+
 // запросы по группам техники
-function custom_get_groups($groups) {
-	if(count($groups['CONTENT'])){
-		foreach($groups['CONTENT'] as $group){
-			$result = db_select('taxonomy_term_data', 't');
-			$result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
-			$result->fields('f', array('field_xid_value'));
-			$result->condition('f.field_xid_value', $group['GE_id']);
-			$result->condition('t.vid', 1);
-			$result = $result->execute()->fetchAssoc();
-			if(!$result){
-				custom_create_taxonomy_term($group['GE_name'], 1, $group['GE_id']);
-			}
-		}
-		
-	}
+function custom_get_groups($groups)
+{
+    if (count($groups['CONTENT'])) {
+        foreach ($groups['CONTENT'] as $group) {
+            $result = db_select('taxonomy_term_data', 't');
+            $result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
+            $result->fields('f', array('field_xid_value'));
+            $result->condition('f.field_xid_value', $group['GE_id']);
+            $result->condition('t.vid', 1);
+            $result = $result->execute()->fetchAssoc();
+            if (!$result) {
+                custom_create_taxonomy_term($group['GE_name'], 1, $group['GE_id']);
+            }
+        }
+
+    }
 }
+
 // запросы по подгруппам техники
-function custom_get_subgroups($groups) {
-	if(count($groups['CONTENT'])){
-		foreach($groups['CONTENT'] as $group){
-			$res = db_select('taxonomy_term_data', 't');
-			$res->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
-			$res->fields('t', array('tid'));
-			$res->condition('f.field_xid_value', 100000+$group['TE_id']);
-			$res->condition('t.vid', 1);
-			$res = $res->execute()->fetchAssoc();
-			
-			$result = db_select('taxonomy_term_data', 't');
-			$result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
-			$result->fields('t', array('tid'));
-			//$result->fields('f', array('field_xid_value'));
-			$result->condition('f.field_xid_value', $group['GE_id']);
-			$result->condition('t.vid', 1);
-			$result = $result->execute()->fetchAssoc();
-			custom_create_taxonomy_term($group['TE_name'], 1, 100000+$group['TE_id'], $result['tid'], taxonomy_term_load($res['tid']), $group);
-		}
-	}
+function custom_get_subgroups($groups)
+{
+    if (count($groups['CONTENT'])) {
+        foreach ($groups['CONTENT'] as $group) {
+            $res = db_select('taxonomy_term_data', 't');
+            $res->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
+            $res->fields('t', array('tid'));
+            $res->condition('f.field_xid_value', 100000 + $group['TE_id']);
+            $res->condition('t.vid', 1);
+            $res = $res->execute()->fetchAssoc();
+
+            $result = db_select('taxonomy_term_data', 't');
+            $result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
+            $result->fields('t', array('tid'));
+            //$result->fields('f', array('field_xid_value'));
+            $result->condition('f.field_xid_value', $group['GE_id']);
+            $result->condition('t.vid', 1);
+            $result = $result->execute()->fetchAssoc();
+            custom_create_taxonomy_term($group['TE_name'], 1, 100000 + $group['TE_id'], $result['tid'], taxonomy_term_load($res['tid']), $group);
+        }
+    }
 }
 
 // запросы по моделям
@@ -673,127 +727,140 @@ function custom_get_subgroups($groups) {
 	}
 }*/
 // запросы по группам техники
-function custom_get_brands($groups) {
-	if(count($groups['CONTENT'])){
-		foreach($groups['CONTENT'] as $group){
-			$result = db_select('taxonomy_term_data', 't');
-			$result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
-			$result->fields('f', array('field_xid_value'));
-			$result->condition('f.field_xid_value', $group['B_id']);
-			$result->condition('t.vid', 3);
-			$result = $result->execute()->fetchAssoc();
-			$i++;
-			if(!$result){
-				custom_create_taxonomy_term($group['B_name'], 3, $group['B_id']);
-			}
-		}
-	}
+function custom_get_brands($groups)
+{
+    if (count($groups['CONTENT'])) {
+        foreach ($groups['CONTENT'] as $group) {
+            $result = db_select('taxonomy_term_data', 't');
+            $result->join('field_revision_field_xid', 'f', 'f.entity_id = t.tid');
+            $result->fields('f', array('field_xid_value'));
+            $result->condition('f.field_xid_value', $group['B_id']);
+            $result->condition('t.vid', 3);
+            $result = $result->execute()->fetchAssoc();
+            $i++;
+            if (!$result) {
+                custom_create_taxonomy_term($group['B_name'], 3, $group['B_id']);
+            }
+        }
+    }
 }
-function custom_product() {
-	//$rez = custom_get_reguest('type=komimport&request=getgroupequipment');
-	//custom_get_groups($rez);
-	//$rez = custom_get_reguest('type=komimport&request=getbrands');
-	//custom_get_brands($rez);
-	//$rez = custom_get_reguest('type=komimport&request=gettypeequipment');
-	//custom_get_subgroups($rez);
-	//$rez = custom_get_reguest('type=komimport&request=getoffersequipment'); //&mark[]=38 &mark[]=1
-	//return '<pre>'.var_export( $rez, true).'</pre>';
-	$childs = taxonomy_get_tree(1, 0, null, true);
+
+function custom_product()
+{
+    //$rez = custom_get_reguest('type=komimport&request=getgroupequipment');
+    //custom_get_groups($rez);
+    //$rez = custom_get_reguest('type=komimport&request=getbrands');
+    //custom_get_brands($rez);
+    //$rez = custom_get_reguest('type=komimport&request=gettypeequipment');
+    //custom_get_subgroups($rez);
+    //$rez = custom_get_reguest('type=komimport&request=getoffersequipment'); //&mark[]=38 &mark[]=1
+    //return '<pre>'.var_export( $rez, true).'</pre>';
+    $childs = taxonomy_get_tree(1, 0, null, true);
     return theme('custom_terms', array('childs' => $childs));
 }
-function custom_product_card(){
-	$get = parse_url($_SERVER['REQUEST_URI']);
-	$base = $get['path'];
-	$ex = explode('/', $base);
-	$art_num = $ex[count($ex)-1];
-	if($art_num){
-		//$rez = custom_get_reguest('type=komimport');
-		$rez = custom_get_reguest('type=komimport&request=getoffersequipment&id='.$art_num);
-		$good = $arg['good'] = $rez['CONTENT'][key($rez['CONTENT'])];
-		$result = db_select('taxonomy_term_data', 'td');
-			$result->join('field_revision_field_xid', 'fi', 'fi.entity_id = td.tid');
-			$result->fields('td');
-			$result->fields('fi');
-			
-			$result->condition('fi.field_xid_value', array($good['GE_id'], $good['TE_id']+100000),'IN');
-			$result = $result->execute();
-			$result = $result->fetchAll();
-			
-		if($result[0]->field_xid_value < 100000) {$g1 = $result[0]; $g2 = $result[1];}
-		if($result[0]->field_xid_value > 100000) {$g1 = $result[1]; $g2 = $result[0];}
-		//kpr($g1);
-		//kpr($g2);
-		$breadcrumb = array();
-		$breadcrumb[] = l('Главная', '<front>');
-		$breadcrumb[] = l($g1->name, 'taxonomy/term/'.$g1->tid);
-		$breadcrumb[] = l($g2->name, 'taxonomy/term/'.$g2->tid);
-		// Set Breadcrumbs
-		drupal_set_breadcrumb($breadcrumb);
-		drupal_set_title($good['M_name']);
-		return theme('custom_productcard_template', $arg);
-	}else{
-		drupal_not_found();
-		module_invoke_all('exit');
-		exit();
-	}
+
+function custom_product_card()
+{
+    $get = parse_url($_SERVER['REQUEST_URI']);
+    $base = $get['path'];
+    $ex = explode('/', $base);
+    $art_num = $ex[count($ex) - 1];
+    if ($art_num) {
+        //$rez = custom_get_reguest('type=komimport');
+        $rez = custom_get_reguest('type=komimport&request=getoffersequipment&id=' . $art_num);
+        $good = $arg['good'] = $rez['CONTENT'][key($rez['CONTENT'])];
+        $result = db_select('taxonomy_term_data', 'td');
+        $result->join('field_revision_field_xid', 'fi', 'fi.entity_id = td.tid');
+        $result->fields('td');
+        $result->fields('fi');
+
+        $result->condition('fi.field_xid_value', array($good['GE_id'], $good['TE_id'] + 100000), 'IN');
+        $result = $result->execute();
+        $result = $result->fetchAll();
+
+        if ($result[0]->field_xid_value < 100000) {
+            $g1 = $result[0];
+            $g2 = $result[1];
+        }
+        if ($result[0]->field_xid_value > 100000) {
+            $g1 = $result[1];
+            $g2 = $result[0];
+        }
+        //kpr($g1);
+        //kpr($g2);
+        $breadcrumb = array();
+        $breadcrumb[] = l('Главная', '<front>');
+        $breadcrumb[] = l($g1->name, 'taxonomy/term/' . $g1->tid);
+        $breadcrumb[] = l($g2->name, 'taxonomy/term/' . $g2->tid);
+        // Set Breadcrumbs
+        drupal_set_breadcrumb($breadcrumb);
+        drupal_set_title($good['M_name']);
+        return theme('custom_productcard_template', $arg);
+    } else {
+        drupal_not_found();
+        module_invoke_all('exit');
+        exit();
+    }
 }
 
 
-function custom_get_nested_tree($vid_or_terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
-  if (!is_array($vid_or_terms)) {
-    $vid_or_terms = taxonomy_get_tree($vid_or_terms);
-  }
-  foreach ($vid_or_terms as $term) {
-    foreach ($term->parents as $term_parent) {
-      if ($term_parent == $parent) {
-		//kpr($term);
-		$nodes = taxonomy_select_nodes($term->tid, false);
-		$term->name = $term->name . "(". count($nodes) . ")";
-		//die($nodes);
-        $return[$term->tid] = $term;
-      }
-      else {
-        $parents_index[$term_parent][$term->tid] = $term;
-      }
+function custom_get_nested_tree($vid_or_terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0)
+{
+    if (!is_array($vid_or_terms)) {
+        $vid_or_terms = taxonomy_get_tree($vid_or_terms);
     }
-  }
-  foreach ($return as &$term) {
-    if (isset($parents_index[$term->tid]) && (is_null($max_depth) || $depth < $max_depth)) {
-      $term->children = taxonomy_get_nested_tree($parents_index[$term->tid], $max_depth, $term->tid, $parents_index, $depth + 1);
+    foreach ($vid_or_terms as $term) {
+        foreach ($term->parents as $term_parent) {
+            if ($term_parent == $parent) {
+                //kpr($term);
+                $nodes = taxonomy_select_nodes($term->tid, false);
+                $term->name = $term->name . "(" . count($nodes) . ")";
+                //die($nodes);
+                $return[$term->tid] = $term;
+            } else {
+                $parents_index[$term_parent][$term->tid] = $term;
+            }
+        }
     }
-  }
-  return $return;
+    foreach ($return as &$term) {
+        if (isset($parents_index[$term->tid]) && (is_null($max_depth) || $depth < $max_depth)) {
+            $term->children = taxonomy_get_nested_tree($parents_index[$term->tid], $max_depth, $term->tid, $parents_index, $depth + 1);
+        }
+    }
+    return $return;
 }
-function custom_nested_tree_render($tree, $recurring = FALSE) {
-  $items = array();
-  if (count($tree)) {
-    foreach ($tree as $term) {
-      $path = taxonomy_term_uri($term);
-      $item = array('data' => l($term->name, $path["path"]));
-      if (isset($term->children)) {
-        $item["children"] = taxonomy_nested_tree_render($term->children, TRUE);
-      }
-      $items[] = $item;
+
+function custom_nested_tree_render($tree, $recurring = FALSE)
+{
+    $items = array();
+    if (count($tree)) {
+        foreach ($tree as $term) {
+            $path = taxonomy_term_uri($term);
+            $item = array('data' => l($term->name, $path["path"]));
+            if (isset($term->children)) {
+                $item["children"] = taxonomy_nested_tree_render($term->children, TRUE);
+            }
+            $items[] = $item;
+        }
     }
-  }
-  if ($recurring) {
-    return $items;
-  }
-  return array(
-	'#theme' => 'item_list',
-    '#items' => $items,
-    '#attributes' => array('class' => 'taxonomy-tree'),
-  );
+    if ($recurring) {
+        return $items;
+    }
+    return array(
+        '#theme' => 'item_list',
+        '#items' => $items,
+        '#attributes' => array('class' => 'taxonomy-tree'),
+    );
 }
-function custom_print_vocs($arr = array(
-		6, 7, 8, 9, 10, 11, 12, 13, 14
-	)) {
-	$tree = array();
-	foreach($arr as $a){
-		$vocab = taxonomy_vocabulary_load($a);
-		print "<h2>".$vocab->name."</h2>";
-		$tr = custom_get_nested_tree($a);
-		print render(custom_nested_tree_render($tr));
-	}
-	
+
+function custom_print_vocs($arr = array(6, 7, 8, 9, 10, 11, 12, 13, 14))
+{
+    $tree = array();
+    foreach ($arr as $a) {
+        $vocab = taxonomy_vocabulary_load($a);
+        print "<h2>" . $vocab->name . "</h2>";
+        $tr = custom_get_nested_tree($a);
+        print render(custom_nested_tree_render($tr));
+    }
+
 }

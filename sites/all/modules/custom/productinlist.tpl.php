@@ -10,7 +10,7 @@
 ?>
 <div class="product_frame">
 	<div class="image_frame">
-		<?if($image['F_directory']){?>
+		<?if(isset($image['F_directory'])){?>
 			<img src="<?=custom_get_file_url($image['F_directory'], $image['F_file'], 'prew_avg')?>" alt="<?=$image['F_name']?>">
 		<?}?>
 	</div>

@@ -12,16 +12,20 @@ function jquery_ui_multiselect_widget_init() {
   $module_path = drupal_get_path('module', 'jquery_ui_multiselect_widget');
   $js_settings = _jquery_ui_multiselect_widget_get_settings();
 
-  if (($library = libraries_load('jquery-ui-multiselect-widget')) && !empty($library['loaded'])) {
-    drupal_add_library('system', 'ui.core');
-    drupal_add_library('system', 'ui.widget');
-    drupal_add_library('system', 'ui.effects.core');
-    // Add Settings
-    drupal_add_js(array('jquery_ui_multiselect_widget' => $js_settings), 'setting');
-    // Module JS for init as set in config.
-    drupal_add_js($module_path . '/jquery_ui_multiselect_widget.js');
-    // Module CSS as default
-    drupal_add_css($module_path . '/jquery_ui_multiselect_widget.css');
+  $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+  if (!drupal_match_path($path, $js_settings['jquery_ui_multiselect_widget_path_match_exclude'])) {
+    if (($library = libraries_load('jquery-ui-multiselect-widget')) && !empty($library['loaded'])) {
+      $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+      drupal_add_library('system', 'ui.core');
+      drupal_add_library('system', 'ui.widget');
+      drupal_add_library('system', 'ui.effects.core');
+      // Add Settings
+      drupal_add_js(array('jquery_ui_multiselect_widget' => $js_settings), 'setting');
+      // Module JS for init as set in config.
+      drupal_add_js($module_path . '/jquery_ui_multiselect_widget.js');
+      // Module CSS as default
+      drupal_add_css($module_path . '/jquery_ui_multiselect_widget.css');
+    }
   }
 }
 
@@ -51,7 +55,7 @@ function jquery_ui_multiselect_widget_requirements($phase) {
       );
     }
     // Check if the site is running >= jQuery 1.4
-    if (($library = drupal_get_library('system', 'jquery')) && $library['version'] >= 1.4) {
+    if (($library = drupal_get_library('system', 'jquery')) && version_compare($library['version'], '1.4', '>=')) {
       $requirements['jquery-ui-multiselect-widget-jquery'] = array(
         'title' => t('jQuery UI MultiSelect Widget'),
         'value' => t('jQuery @version', array('@version' => $library['version'])),
@@ -68,7 +72,7 @@ function jquery_ui_multiselect_widget_requirements($phase) {
       );
     }
 
-    if (($library = drupal_get_library('system', 'ui')) && $library['version'] >= 1.8) {
+    if (($library = drupal_get_library('system', 'ui')) && version_compare($library['version'], '1.8', '>=')) {
       $requirements['jquery-ui-multiselect-widget-jqueryui'] = array(
         'title' => t('jQuery UI MultiSelect Widget'),
         'value' => t('jQuery UI @version', array('@version' => $library['version'])),
@@ -160,5 +164,6 @@ function _jquery_ui_multiselect_widget_get_settings() {
     'height' => variable_get('jquery_ui_multiselect_widget_height', 175),
     'classes' => variable_get('jquery_ui_multiselect_widget_classes', ''),
     'filter_auto_reset' => variable_get('jquery_ui_multiselect_widget_filter_auto_reset', FALSE),
-    'filter_width' => variable_get('jquery_ui_multiselect_widget_filter_width', 100));
+    'filter_width' => variable_get('jquery_ui_multiselect_widget_filter_width', 100),
+    'jquery_ui_multiselect_widget_path_match_exclude' => variable_get('jquery_ui_multiselect_widget_path_match_exclude', ''));
 }

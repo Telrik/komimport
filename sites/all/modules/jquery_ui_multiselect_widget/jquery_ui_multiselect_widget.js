@@ -20,7 +20,7 @@
       var elements = $(context).find(filter);
       if (jQuery.trim(settings.jquery_ui_multiselect_widget.subselector) != '') {
         // Subselector
-        elements = elements.find(settings.jquery_ui_multiselect_widget.subselector);
+        elements = elements.filter(settings.jquery_ui_multiselect_widget.subselector);
       }
       // Convert int 1 to boolean so that the header works correctly.
       if (settings.jquery_ui_multiselect_widget.header === 1) {

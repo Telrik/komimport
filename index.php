@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 /**
  * @file
  * The PHP page that serves all page requests on a Drupal installation.
@@ -18,7 +15,7 @@ ini_set("display_errors", 1);
  * Root directory of Drupal installation.
  */
 define('DRUPAL_ROOT', getcwd());
-require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 
+require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 menu_execute_active_handler();
