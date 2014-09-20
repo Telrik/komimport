@@ -77,7 +77,7 @@
     <?php endif; ?>
 
     <?php if ($more): ?>
-        <?php print $more; ?>
+        <?php  print str_replace('otzyvy.html', 'otzyvy-nashih-klientov.html', $more); ?>
     <?php endif; ?>
 
     <?php if ($footer): ?>
